@@ -42,4 +42,42 @@
  			echo "Sukses";
  		}
  	}
+
+ 	//lihat daftar siswa yang sudah mengumpulkan tugas
+ 	public function kumpulanTugas($kode)
+ 	{
+ 		$data['join_tugas'] = $this->m_guru->joinTugas($kode)->result();
+ 		$this->template->load("template/template_guru",'guru/kumpulkan_tugas',$data);
+
+ 	}
+
+ 	//modal untuk beri nilai pada tugas siswa
+ 	public function nilai_tugas()
+ 	{
+ 		$nisn		 = $this->input->get("nisn");
+ 		$id		 = $this->input->get("id");
+ 		$kode_tugas  = $this->input->get("kode_tugas");
+ 		$where = array(
+ 			'kode_tugas'	=> $kode_tugas ,
+ 			"nisn"			=> $nisn
+ 		);
+ 		$data['jawaban'] = $this->m_guru->cariData($where,"kumpul_tugas")->row();
+ 		$this->load->view("guru/modal_nilai_tugas",$data);
+ 	}
+
+ 	public function berinilai()
+ 	{
+ 		$nilai = $this->input->post("nilai_tugas");
+ 		$id  = $this->input->post("id");
+
+ 		$where = array('id' => $id);
+ 		$data = array('nilai'  => $nilai);
+ 		$update = $this->m_guru->update($data,"kumpul_tugas",$where);
+ 		if($update){
+ 			echo "nilai di berikan";
+ 		}
+ 		//var_dump($data);
+ 	}
+
+
  }

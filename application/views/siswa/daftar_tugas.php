@@ -112,6 +112,6 @@
   })
 
   function file(file){
-    window.open("<?= base_url('assets/tugas/') ?>" + file , "height=450px","width=450px","menubar=yes","resizeable=yes");
+    window.open("<?= base_url('assets/tugas/soal/') ?>" + file , "height=450px","width=450px","menubar=yes","resizeable=yes");
   }
   </script>

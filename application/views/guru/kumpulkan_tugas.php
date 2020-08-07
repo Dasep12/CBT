@@ -1,4 +1,6 @@
+<?php
 
+?>
 <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
@@ -40,7 +42,7 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Daftar Tugas</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Jawaban Tugas</a></li>
                  
                 </ul>
               </div><!-- /.card-header -->
@@ -54,14 +56,27 @@
                           <tr>
                             <th>No</th>
                             <th>Kode Tugas</th>
-                            <th>Judul Tugas</th>
-                            <th>Mata Pelajaran</th>
+                            <th>Nama</th>
+                            <th>NISN</th>
                             <th>Kelas / Prodi</th>
-                            <th>Tanggal</th>
+                            <th>Diserahkan</th>
                             <th>Aksi</th>
                           </tr>
                         </thead>
                           <tbody>
+                            <?php $no = 1 ; foreach($join_tugas as $result ) : ?>
+                              <tr>
+                                <td><?= $no++ ?></td>
+                                <td><?= $result->kode_tugas ?></td>
+                                <td><?= $result->nama_siswa ?></td>
+                                <td><?= $result->nisn ?></td>
+                                <td><?= $result->kelas . " / " . $result->prodi ?></td>
+                                <td><?= $result->tgl_diserahkan . "/" . $result->jam_diserahkan ?></td>
+                                <td>
+                                  <a href="javascript:;" data-id="<?= $result->id ?>"  data-kode_tugas="<?= $result->kode_tugas  ?>" data-nisn ="<?= $result->nisn ?>"   data-toggle="modal" data-target="#lihat_tugas" class="btn btn-info btn-xs">nilai</a>
+                                </td>
+                              </tr>
+                            <?php endforeach ?>
                           </tbody>
                       </table>
                     </div>
@@ -102,74 +117,27 @@
 
 <!-- end of modal tugas siswa -->
 
-  <script type="text/javascript">
-    //hapus data tugas siswa
-function del(kode){
-    swal({
-      title: "Hapus data ?",
-      text: "data yang di hapus tidak bisa di kembalikan",
-      icon: "warning",
-      buttons: [true,"Tetap Hapus"],
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-          $.ajax({
-            url : "<?= base_url('guru/Daftar_tugas/delete') ?>",
-            method : "GET",
-            data : "id="+kode ,
-            success : function(response){
-                if(response == "Sukses"){
-                  toastr.success("Data Berhasil Terhapus");
-                  window.location.href="<?= base_url('guru/Daftar_tugas') ?>"
-                }             
-            }
-
-          })
-      }
-    });
-  }  
+  <script type="text/javascript"> 
   $(document).ready(function(){
+       //tampilkan list transaksi ke dalam modal
+      $("#lihat_tugas").on('show.bs.modal',function(e){
+          var div = $(e.relatedTarget);
+          var modal = $(this);
+          var nisn = div.data("nisn");
+          var id = div.data("id");
+          var kode_tugas = div.data("kode_tugas");
+            $.ajax({
+              url : "<?= base_url("guru/Daftar_tugas/nilai_tugas") ?>" ,
+              data :"id="+ id + "&nisn=" + nisn + "&kode_tugas=" + kode_tugas ,
+              method : "GET",
+              success : function(response){
+                document.getElementById('no_inv').innerHTML = id ;
+                $("#output_list").html(response);
+              }
 
-     //tampilkan list transaksi ke dalam modal
-    $("#lihat_tugas").on('show.bs.modal',function(e){
-        var div = $(e.relatedTarget);
-        var modal = $(this);
-        var id = div.data("id");
-          $.ajax({
-            url : "<?= base_url("guru/Daftar_tugas/viewTugas") ?>" ,
-            data :"id="+ id  ,
-            method : "GET",
-            success : function(response){
-              document.getElementById('no_inv').innerHTML = id ;
-              $("#output_list").html(response);
-            }
+            })
+      })
 
-          })
-    }) 
-
-
-
-    $.ajax({
-      url : "<?= base_url('guru/Daftar_tugas/sendData') ?>",
-      type : 'ajax',
-      dataType : 'json', 
-      contentType : false ,
-      async : false ,
-      success : function(response){
-        var data = [] ;
-        var j = 1 ;
-        for(var i = 0 ; i < response.length ; i++){
-          data.push([ j , response[i].kode_tugas , response[i].judul_tugas , response[i].mata_pelajaran , response[i].kelas +" / "+ response[i].prodi , response[i].tanggal +"/"+ response[i].jam   , 
-            "<a href='javascript:;' data-id="+ response[i].id + "  data-toggle='modal' data-target='#lihat_tugas' class='btn btn-info btn-xs'>view</a>"+
-            "<a href='javascript:del("+response[i].id +")' class='btn btn-danger btn-xs'>delete</a> "+
-            "<a target='_blank' href='<?= base_url("guru/Daftar_tugas/kumpulanTugas/")?>"+response[i].kode_tugas+"'> klik</a>" ])
-        j++ ;
-        }
-           $('#tugas').DataTable({
-            data : data 
-           });
-      }
-    })
+      $('#tugas').DataTable();
   })
 </script>

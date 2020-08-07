@@ -60,18 +60,20 @@
                     <label>Keterangan</label>
                     <textarea name="keterangan" class="form-control"><?= $tugas->keterangan ?></textarea>
 
+                    <div class="form-group">
                     <label class="mb-2">Lampiran</label>
+                  </div>
                      <?php if(empty($tugas->file_tugas)){
                               echo "<small>tidak ada lampiran</small>";
                             }else {
                               $path = base_url('assets/dist/tugas/'.$tugas->file_tugas);
                               $info = pathinfo($path, PATHINFO_EXTENSION);
                                 if($info == "docx"){?>
-                                  <a href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/word.png') ?>"></a>
+                                  <a class="btn-primary btn-sm btn" href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/word.png') ?>"></a>
                                 <?php }elseif($info == "pdf" ) { ?>
-                                  <a href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/pdf.png') ?>"></a>
+                                  <a class="btn-primary btn-sm btn" href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/pdf.png') ?>"></a>
                                 <?php }elseif($info == "jpg" || $info == "jpeg" || $info == "png" ) { ?>
-                                  <a href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/picture.png') ?>"></a>
+                                  <a class="btn-primary btn-sm btn" href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/picture.png') ?>"></a>
                                 <?php }
                               } ?><br>
                    <small class="text-danger"><i>*klik di icon folder untuk lihat lampiran*</i></small>
@@ -129,7 +131,12 @@
               $(".Loading").hide()
             },
             success: function(msg){
-              alert(msg);
+              swal({
+                icon : "success",
+                title : msg 
+              }).then(function(){
+                window.location.href="<?= base_url('siswa/Daftar_tugas') ?>"
+              })
             }
           })
         }

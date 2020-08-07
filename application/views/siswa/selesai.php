@@ -68,8 +68,14 @@
                           <td><?= $no++ ?></td>
                           <td><a href='javascript:;' data-nisn="<?= $tugas->nisn ?>" data-kelas="<?= $tugas->kelas ?>" data-prodi="<?= $tugas->prodi  ?>" data-kode_tugas="<?= $tugas->kode_tugas ?>" data-toggle='modal' data-target='#lihat_tugas' class='btn btn-info btn-xs'><?= $tugas->mata_pelajaran ?></a></td>
                           <td><?= $tugas->nama_guru ?></td>
-                          <td><?= "Selesai" ?></td>
-                          <td><?= "80" ?></td>
+                          <td><?php 
+                            if(empty($tugas->nilai)){
+                              echo "<label class='badge badge-success'>Diserahkan</label>";
+                            }else {
+                              echo "<label class='badge badge-danger'>Di nilai</label>";
+                            }
+                           ?></td>
+                          <td><?= $tugas->nilai ?></td>
                         </tr>
                         <?php endforeach ?>
                         </tbody>
@@ -88,7 +94,6 @@
         </div>
       </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
 
 <!-- modal lihat tugas siswa yang sudah selesai dan nilai -->
  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="lihat_tugas" class="modal fade">
@@ -103,15 +108,12 @@
              </div>
              <div class="modal-body" id="output_list">
 
-             </div>
-
-             <div class="modal-footer">
-         </div>
+             
              </div>
          </div>
      </div>
- </div>
-
+</div>
+</div>
 <!-- end of modal tugas siswa yang sudah selesai dan di nilai -->
 
 

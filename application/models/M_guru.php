@@ -92,4 +92,14 @@ class M_guru extends CI_Model
 	{
 		return $this->db->get_where("bank_soal",array("kode_soal" => $kode));
 	}
+
+	//join table tugas dan kumpul_tugas
+	public function joinTugas($kode)
+	{
+		$this->db->select("*");
+		$this->db->from("tugas");
+		$this->db->where("tugas.kode_tugas" , $kode);
+		$this->db->join("kumpul_tugas" , "kumpul_tugas.kode_tugas = tugas.kode_tugas");
+		return $this->db->get();
+	}
 }
