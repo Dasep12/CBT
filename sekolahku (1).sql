@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Agu 2020 pada 12.30
+-- Waktu pembuatan: 14 Agu 2020 pada 13.01
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -50,7 +50,7 @@ INSERT INTO `akun` (`id`, `username`, `nisn`, `password`, `role_id`) VALUES
 (8, 'Anita', '1920002', '123', 3),
 (9, 'Ramlan', '1920005', '123', 3),
 (10, 'Rizal', '1920004', '123', 3),
-(11, 'Adien', '1910004', '123', 3);
+(11, 'Satudin', '1910004', '123', 3);
 
 -- --------------------------------------------------------
 
@@ -113,6 +113,17 @@ CREATE TABLE `daftar_tugas` (
   `tanggal` date DEFAULT NULL,
   `jam` varchar(30) DEFAULT NULL,
   `file_tugas` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `file_materi`
+--
+
+CREATE TABLE `file_materi` (
+  `kode_materi` varchar(250) NOT NULL,
+  `file_materi` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -235,9 +246,8 @@ CREATE TABLE `kumpul_tugas` (
 --
 
 INSERT INTO `kumpul_tugas` (`id`, `kode_tugas`, `nama_siswa`, `nisn`, `jawaban`, `file_jawaban`, `tgl_diserahkan`, `jam_diserahkan`, `nilai`) VALUES
-(4, '202058', 'Dasep Depiyawan', '1910001', 'Ok Bang Jago', 'ikro.png', '2020-08-05', '19:05:37', 60),
-(5, '202058', 'Adien', '1910004', 'Siap bosque', '3.jpg', '2020-08-06', '04:15:00', 0),
-(6, '202070', 'Adien', '1910004', 'Siab atuh pak', 'oplj.jpg', '2020-08-06', '08:47:22', 0);
+(5, '20209', 'Dasep Depiyawan', '1910001', 'Berikut jawaban terlampir\r\nTerimakasih', '2.jpg', '2020-08-12', '16:16:34', 75),
+(6, '20209', 'Adien', '1910004', 'Siap Bang Jago', '4j.jpg', '2020-08-12', '16:33:31', 60);
 
 -- --------------------------------------------------------
 
@@ -266,6 +276,33 @@ INSERT INTO `mata_pelajaran` (`id`, `mata_pelajaran`, `kode_mapel`, `pengajar`) 
 (7, 'Matematika', '334', '1945'),
 (8, 'Pendidikan Agama Islam', '439', '2015'),
 (9, 'Pendidikan Agama Islam', '003', '1896');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `materi`
+--
+
+CREATE TABLE `materi` (
+  `id` int(11) NOT NULL,
+  `judul_materi` varchar(100) DEFAULT NULL,
+  `keterangan_materi` text DEFAULT NULL,
+  `kode_materi` varchar(60) DEFAULT NULL,
+  `jam_post` varchar(60) DEFAULT NULL,
+  `tgl_post` date DEFAULT NULL,
+  `mata_pelajaran` varchar(100) DEFAULT NULL,
+  `nama_guru` varchar(100) DEFAULT NULL,
+  `kode_guru` varchar(100) DEFAULT NULL,
+  `kelas` varchar(100) DEFAULT NULL,
+  `prodi` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `materi`
+--
+
+INSERT INTO `materi` (`id`, `judul_materi`, `keterangan_materi`, `kode_materi`, `jam_post`, `tgl_post`, `mata_pelajaran`, `nama_guru`, `kode_guru`, `kelas`, `prodi`) VALUES
+(1, 'Pengertian Agama', 'BAB 1', 'MTR001', '17:17:54', '2020-08-14', 'Pendidikan Agama Islam', 'Asep Rochmat', '1945', 'X', 'TKJ');
 
 -- --------------------------------------------------------
 
@@ -333,8 +370,7 @@ CREATE TABLE `tugas` (
 --
 
 INSERT INTO `tugas` (`id`, `kode_guru`, `nama_guru`, `mata_pelajaran`, `kode_mapel`, `kelas`, `prodi`, `tanggal`, `jam`, `file_tugas`, `judul_tugas`, `keterangan`, `kode_tugas`) VALUES
-(20, '1945', 'Asep Rochmat', 'Pendidikan Agama Islam - 123', NULL, 'XII', 'TKJ', '2020-08-05', '18:56:44', '19101051_Dasep_Depiyawan.pdf', 'Tugas 1', 'Kerjakan  di tunggu sampai hari ini', '202058'),
-(21, '1945', 'Asep Rochmat', 'Matematika - 303', NULL, 'XII', 'TKJ', '2020-08-06', '08:46:08', 'tanggapan.png', 'Tugas 3', 'Kerjakan  no 1-5 ', '202070');
+(22, '1945', 'Asep Rochmat', 'Pendidikan Agama Islam - 123', NULL, 'XII', 'TKJ', '2020-08-12', '16:08:09', NULL, 'Tugas 1', 'Cari Pengertian Agama . Jawaban di tulis tangan ', '20209');
 
 -- --------------------------------------------------------
 
@@ -398,6 +434,12 @@ ALTER TABLE `daftar_tugas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `file_materi`
+--
+ALTER TABLE `file_materi`
+  ADD PRIMARY KEY (`kode_materi`);
+
+--
 -- Indeks untuk tabel `guru`
 --
 ALTER TABLE `guru`
@@ -425,6 +467,12 @@ ALTER TABLE `kumpul_tugas`
 -- Indeks untuk tabel `mata_pelajaran`
 --
 ALTER TABLE `mata_pelajaran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `materi`
+--
+ALTER TABLE `materi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -471,7 +519,7 @@ ALTER TABLE `bank_soal`
 -- AUTO_INCREMENT untuk tabel `daftar_tugas`
 --
 ALTER TABLE `daftar_tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `guru`
@@ -504,6 +552,12 @@ ALTER TABLE `mata_pelajaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT untuk tabel `materi`
+--
+ALTER TABLE `materi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
@@ -513,7 +567,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `uas`
