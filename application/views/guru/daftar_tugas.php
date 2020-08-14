@@ -161,9 +161,9 @@ function del(kode){
         var j = 1 ;
         for(var i = 0 ; i < response.length ; i++){
           data.push([ j , response[i].kode_tugas , response[i].judul_tugas , response[i].mata_pelajaran , response[i].kelas +" / "+ response[i].prodi , response[i].tanggal +"/"+ response[i].jam   , 
-            "<a href='javascript:;' data-id="+ response[i].id + "  data-toggle='modal' data-target='#lihat_tugas' class='btn btn-info btn-xs'>view</a>"+
-            "<a href='javascript:del("+response[i].id +")' class='btn btn-danger btn-xs'>delete</a> "+
-            "<a target='_blank' href='<?= base_url("guru/Daftar_tugas/kumpulanTugas/")?>"+response[i].kode_tugas+"'> klik</a>" ])
+            "<a href='javascript:;' data-id="+ response[i].id + "  data-toggle='modal' data-target='#lihat_tugas' class='mr-1 btn btn-info btn-xs'>Lihat Tugas</a>"+
+            "<a href='javascript:del("+response[i].kode_tugas +")' class='btn btn-danger btn-xs'>delete</a> "+
+            "<a class='btn btn-primary btn-xs target='_blank' href='<?= base_url("guru/Daftar_tugas/kumpulanTugas/")?>"+response[i].kode_tugas+"'>Jawaban Siswa</a>" ])
         j++ ;
         }
            $('#tugas').DataTable({

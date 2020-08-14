@@ -47,13 +47,14 @@ class Lihat_tugas extends CI_Controller
 					echo "Gagal";
 				}
 		}else {
+
 			//kumpulkan tugas beserta lampiran
 			$id_tugas = $this->input->post("kode_tugas");
 			$where1 = array(
-				'nisn'	=> $this->session->userdata("nisn"),
+				'nisn'			=> $this->session->userdata("nisn"),
 				'nama_siswa'	=> $this->session->userdata("nama"),
-				'prodi'	=> $this->session->userdata("prodi"),
-				'kelas'	=> $this->session->userdata("kelas"),
+				'prodi'			=> $this->session->userdata("prodi"),
+				'kelas'			=> $this->session->userdata("kelas"),
 				'kode_tugas'	=> $id_tugas
 			);
 			//pindahkan tugas dari table daftar tugas ke table kumpul tugas
@@ -68,15 +69,16 @@ class Lihat_tugas extends CI_Controller
 				}else {
 					$file = $this->upload->data("file_name");
 					$data = array(
-						'kode_tugas'	=> $this->input->post("kode_tugas"),
-						'jawaban'		=> $this->input->post("jawaban"),
-						'tanggal'		=> date('Y-m-d'),
-						'file_jawaban'	=> $file ,
-						'jam'			=> date('H:i:s'),
-						'nama_siswa'	=> $this->session->userdata('nama'),
-						'nisn'			=> $this->session->userdata('nisn'),
+						'kode_tugas'		=> $this->input->post("kode_tugas"),
+						'jawaban'			=> $this->input->post("jawaban"),
+						'tgl_diserahkan'	=> date('Y-m-d'),
+						'file_jawaban'		=> $file ,
+						'jam_diserahkan'	=> date('H:i:s'),
+						'nama_siswa'		=> $this->session->userdata('nama'),
+						'nisn'				=> $this->session->userdata('nisn'),
 					);
-
+					
+					//kumpulkan tugas dari siswa kedalam tablel kumpul tugas
 					$input = $this->m_siswa->input($data,"kumpul_tugas");
 						if($input){
 							echo "Tugas di serahkan";

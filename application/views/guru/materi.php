@@ -1,6 +1,3 @@
-<?php
-
-?>
 <div class="container-fluid">
         <div class="row">
           <div class="col-md-3">
@@ -39,10 +36,11 @@
           </div>
           <!-- /.col -->
           <div class="col-md-9">
+            <button class="btn btn-success mb-2" data-toggle="modal" data-target="#lihat_tugas"><i class="fa fa-plus"></i> Posting Materi</button>
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Jawaban Tugas</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Materi Siswa</a></li>
                  
                 </ul>
               </div><!-- /.card-header -->
@@ -55,32 +53,15 @@
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Tugas</th>
-                            <th>Nama</th>
-                            <th>NISN</th>
+                            <th>Kode Materi</th>
+                            <th>Judul Materi</th>
+                            <th>Mata Pelajaran</th>
                             <th>Kelas / Prodi</th>
-                            <th>Diserahkan</th>
                             <th>Aksi</th>
                           </tr>
                         </thead>
                           <tbody>
-                            <?php $no = 1 ; foreach($join_tugas as $result ) : ?>
-                              <tr>
-                                <td><?= $no++ ?></td>
-                                <td><?= $result->kode_tugas ?></td>
-                                <td><?= $result->nama_siswa ?></td>
-                                <td><?= $result->nisn ?></td>
-                                <td><?= $result->kelas . " / " . $result->prodi ?></td>
-                                <td><?= $result->tgl_diserahkan . "/" . $result->jam_diserahkan ?></td>
-                                <td>
-                                  <?php if($result->nilai == 0  || $result->nilai == null){ ?>
-                                    <a href="javascript:;" data-id="<?= $result->id ?>"  data-kode_tugas="<?= $result->kode_tugas  ?>" data-nisn ="<?= $result->nisn ?>"   data-toggle="modal" data-target="#lihat_tugas" class="btn btn-info btn-xs">Belum di nilai</a>
-                              <?php    }else { ?>
-                                  <a href="javascript:;" data-id="<?= $result->id ?>"  data-kode_tugas="<?= $result->kode_tugas  ?>" data-nisn ="<?= $result->nisn ?>"   data-toggle="modal" data-target="#lihat_tugas" class="btn btn-danger btn-xs">Telah di nilai</a>
-                               <?php   } ?>
-                                </td>
-                              </tr>
-                            <?php endforeach ?>
+                           
                           </tbody>
                       </table>
                     </div>
@@ -99,21 +80,51 @@
 
 <!-- modal lihat tugas siswa -->
  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="lihat_tugas" class="modal fade">
-     <div class="modal-dialog">
+     <div class="modal-dialog modal-lg">
          <div class="modal-content">
              <div class="modal-header">
-              <h6>Tugas Siswa <b id="no_inv"></b></h6>
+              <h6>Posting Materi Siswa <b id="no_inv"></b></h6>
                  <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
              </div>
              <div class="load" style="position: absolute;margin: 40px 240px;z-index: 99">
               <img style="display: none;" id="loading" height="90px" width ="100px" src="<?= base_url("assets/images/loading.gif") ?>">
              </div>
-             <div class="modal-body" id="output_list">
 
+             <div class="modal-body" id="output_list">
+             <form enctype="multipart/form-data" action="" method="post" id="uploadMateri">
+              <label>Judul Materi</label>
+              <input class="form-control" type="text" name="judul_materi">
+
+              <label>Keterangan</label>
+              <textarea name="keterangan" class="form-control"></textarea>
+
+              <label>Mata Pelajaran</label>
+              <select class="form-control" name="mata_pelajaran">
+                <?php foreach($mapel as $r) : ?>
+                  <option value="<?= $r->mata_pelajaran ?>"><?= $r->mata_pelajaran . " - " . $r->kode_mapel ?></option>
+                <?php endforeach ?>
+              </select>
+              <label>Kelas</label> 
+              <select name="kelas" class="form-control">
+                <option>X</option>
+                <option>XI</option>
+                <option>XII</option>
+              </select>
+
+              <label>Prodi</label>
+              <select name="prodi" class="form-control">
+                <option>TKJ</option>
+                <option>AKP</option>
+                <option>TKR</option>
+              </select>
+              <label>Tambah Lampiran</label><br>
+              <input type="file" multiple="" name="file_materi[]" >
              </div>
 
              <div class="modal-footer">
+              <button type="submit" class="btn btn-success ">Post Materi</button>
          </div>
+       </form>
              </div>
          </div>
      </div>
@@ -123,25 +134,22 @@
 
   <script type="text/javascript"> 
   $(document).ready(function(){
-       //tampilkan list transaksi ke dalam modal
-      $("#lihat_tugas").on('show.bs.modal',function(e){
-          var div = $(e.relatedTarget);
-          var modal = $(this);
-          var nisn = div.data("nisn");
-          var id = div.data("id");
-          var kode_tugas = div.data("kode_tugas");
-            $.ajax({
-              url : "<?= base_url("guru/Daftar_tugas/nilai_tugas") ?>" ,
-              data :"id="+ id + "&nisn=" + nisn + "&kode_tugas=" + kode_tugas ,
-              method : "GET",
-              success : function(response){
-                document.getElementById('no_inv').innerHTML = id ;
-                $("#output_list").html(response);
-              }
+      $('#tugas').DataTable();
 
+        $("#uploadMateri").on("submit",function(e){
+          e.preventDefault();
+            //upload materi lewata ajax
+            $.ajax({
+              url : "<?= base_url('guru/Materi/upload') ?>",
+              data : new FormData(this),
+              cache : false ,
+              method : "POST",
+              contentType : false ,
+              processData : false ,
+              success : function(e){
+                alert(e);
+              }
             })
       })
-
-      $('#tugas').DataTable();
   })
 </script>

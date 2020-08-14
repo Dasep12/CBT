@@ -13,6 +13,6 @@
 
 <script type="text/javascript">
 	function file(file){
-		window.open("<?= base_url('assets/tugas/') ?>" + file , "menubar=yes" , "resizable=yes" , "height=450px" , "width=450px");
+		window.open("<?= base_url('assets/tugas/soal/') ?>" + file , "menubar=yes" , "resizable=yes" , "height=450px" , "width=450px");
 	}
 </script>

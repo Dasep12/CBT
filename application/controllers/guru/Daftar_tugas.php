@@ -35,10 +35,12 @@
  	public function delete()
  	{
  		$id = $this->input->get("id");
- 		$where = array('id' => $id);
-
+ 		$where = array('kode_tugas' => $id);
+ 		
+ 		//hapus tugas tabel tugas dan table daftar tugas 
  		$delete = $this->m_guru->delete($where,"tugas");
- 		if($delete){
+ 		$del = $this->m_guru->delete($where,"daftar_tugas");
+ 		if($delete && $del){
  			echo "Sukses";
  		}
  	}

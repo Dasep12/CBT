@@ -8,6 +8,10 @@
 		<label>Keterangan</label>
 		<textarea readonly="" class="form-control"><?= $tugas->keterangan ?></textarea>
 		<label>Lampiran  Tugas</label><br>
+
+		<?php if(empty($tugas->file_tugas)) { 
+			echo "<small class='text-danger'>tidak ada lampiran</small>";
+		}else { ?>
 		<a href="javascript:openFile('<?= $tugas->file_tugas ?>')" class="btn btn-danger btn-sm">
 		<?php
 			$path = base_url("assets/tugas/soal/". $tugas->file_tugas);
@@ -21,6 +25,7 @@
 			}
 		?>
 		</a>
+	<?php } ?>
 
 
 	</div>

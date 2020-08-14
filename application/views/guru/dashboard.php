@@ -53,7 +53,7 @@
                           <div class="inner">
                               <img style="height: 150px; width: 350px;" class="img-thumbnail" src="<?= base_url('assets/dist/img/materi.png') ?>">
                           </div>
-                          <a href="#" class="small-box-footer">Materi <i class="fas fa-arrow-circle-right"></i></a>
+                          <a href="<?=  base_url('guru/Materi') ?>" class="small-box-footer">Materi <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                       </div>
 
