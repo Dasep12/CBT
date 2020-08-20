@@ -60,19 +60,32 @@
                         </div>
                         <div class="form-group col-md-4 ">
                           <label>Kode Tugas</label>
-                          <?php $data = range('0', '9') ?>
-                          <input type="text" readonly="" value="<?=   date("Y") . rand($mapel2->kode_mapel,3 )     ?>" name="kode_tugas" class="form-control"  >
+                           <?php
+                              function token($length){
+                                      //generate kode materi yang di posting 
+                                      $token = "";
+                                      $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                                      $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+                                      $codeAlphabet.= "0123456789";
+                                      $max = strlen($codeAlphabet); // edited
+                                        
+                                      for ($i=0; $i < $length; $i++) {
+                                       $token .= $codeAlphabet[random_int(0, $max-1)];
+                                      }
+                                      return $token ;
+                              } ?>
+                          <input type="text" readonly="" value="<?= token(8) ?>" name="kode_tugas" class="form-control"  >
                         </div>
                         <div class="form-group col-md-4 ">
                           <label>Pilih Mata Pelajaran</label>
                          <select class="form-control" id="mata_pelajaran" name="mata_pelajaran">
                            <option value="">-</option>
                            <?php  foreach($mapel->result() as $pelajaran) : ?>
-                            <option><?= $pelajaran->mata_pelajaran . " - " . $pelajaran->kode_mapel ?></option>
+                            <option value="<?= $pelajaran->kode_mapel ?>"><?= $pelajaran->mata_pelajaran . " - " . $pelajaran->kode_mapel ?></option>
                            <?php endforeach ?>
                          </select>
                         </div>
-                        <div class="form-group col-md-4 ">
+                     <!--    <div class="form-group col-md-4 ">
                           <label>Pilih Kelas</label>
                          <select class="form-control" id="kelas" name="kelas">
                            <option value="">-</option>
@@ -89,7 +102,7 @@
                            <option>AKP</option>
                            <option>TKR</option>
                          </select>
-                        </div>
+                        </div> -->
                         <div class="form-group col-md-12 ">
                           <label>Judul Tugas</label>
                           <input type="text" id="judul_tugas" name="judul_tugas" class="form-control"  placeholder="Enter Judul Tugas" >
@@ -103,6 +116,13 @@
                         <div class="form-group col-md-12 ">
                           <label>File Pendukung </label>
                           <input type="file" name="file_tugas" id="file_tugas" onchange="return tugasfile()" class="form-control">
+                        </div>
+
+                        <div class="form-group col-md-9">
+                          <h6>Keterangan</h6>
+                          <?php foreach($mapel->result() as $pelajaran) :  ?>
+                            <small><?= $pelajaran->mata_pelajaran ."-". $pelajaran->kode_mapel ." => " . $pelajaran->kelas . " " . $pelajaran->prodi ?></small><br>
+                          <?php endforeach ; ?>
                         </div>
 
                         <div class="footer">
@@ -133,11 +153,11 @@
         e.preventDefault();
           if(document.getElementById('mata_pelajaran').value == ""){
             toastr.info("mata pelajaran belum di pilih");
-          }else if(document.getElementById('kelas').value == ""){
+          }/*else if(document.getElementById('kelas').value == ""){
             toastr.info("kelas belum di pilih");
           }else if(document.getElementById('prodi').value == ""){
             toastr.info("prodi belum di pilih");
-          }else if(document.getElementById('judul_tugas').value == ""){
+          }*/else if(document.getElementById('judul_tugas').value == ""){
             toastr.info("judul tugas belum di isi");
           }else if(document.getElementById('keterangan').value == ""){
             toastr.info("keterangan dari tugas belum di isi");
@@ -156,6 +176,7 @@
                  $(".Loading").hide()
               },
               success : function(e){
+                //alert(e);
                 if(e == "Sukses"){
                   toastr.success("tugas berhasil di posting ")
                   window.location.href="<?= base_url('guru/Posting_tugas') ?>"

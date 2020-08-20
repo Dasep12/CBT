@@ -102,4 +102,22 @@ class M_guru extends CI_Model
 		$this->db->join("kumpul_tugas" , "kumpul_tugas.kode_tugas = tugas.kode_tugas");
 		return $this->db->get();
 	}
+
+	//upload file materi
+	public function fileMateri($data)
+	{
+		return $this->db->insert_batch($data,"file_materi");
+	}
+
+	//join data materi dengan file materi
+	public function joinMateri($guru,$kode_materi)
+	{
+		//return $this->db->get("materi");
+		$this->db->select("*");
+		$this->db->from("materi");
+		$this->db->where(array("materi.kode_guru" => $guru , "materi.kode_materi" => $kode_materi ));
+		$this->db->join("file_materi" , "file_materi.kode_materi = materi.kode_materi");
+		return $this->db->get();
+	}
+
 }

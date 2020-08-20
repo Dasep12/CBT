@@ -128,7 +128,8 @@ function del(kode){
           })
       }
     });
-  }  
+  } 
+   
   $(document).ready(function(){
 
      //tampilkan list transaksi ke dalam modal

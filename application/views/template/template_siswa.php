@@ -40,7 +40,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="<?= base_url("assets") ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="<?= base_url("assets") ?>/plugins/toastr/toastr.min.css">
-
+  <!-- Ekko Lightbox -->
+  <link rel="stylesheet" href="<?= base_url("assets") ?>/plugins/ekko-lightbox/ekko-lightbox.css">
   <script src="<?= base_url("assets") ?>/plugins/jquery/jquery.min.js"></script>
   <script src="<?= base_url("assets") ?>/pagination/smpPagination.js"></script>
   <script src="<?= base_url("assets") ?>/sweetalert/sweetalert.min.js"></script>
@@ -199,7 +200,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- InputMask -->
 <script src="<?= base_url("assets") ?>/plugins/moment/moment.min.js"></script>
 <script src="<?= base_url("assets") ?>/plugins/inputmask/jquery.inputmask.min.js"></script>
-
+<!-- Ekko Lightbox -->
+<script src="<?= base_url("assets") ?>/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 <!-- date-range-picker -->
 <script src="<?= base_url("assets") ?>/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap color picker -->
