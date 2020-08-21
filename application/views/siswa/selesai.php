@@ -57,8 +57,10 @@
                           <tr>
                             <th>No</th>
                             <th>Mata Pelajaran</th>
+                            <th>Judul Tugas</th>
                             <th>Nama Guru</th>
                             <th>Status</th>
+                            <th>Waktu</th>
                             <th>Nilai</th>
                           </tr>
                         </thead>
@@ -67,6 +69,7 @@
                         <tr>
                           <td><?= $no++ ?></td>
                           <td><a href='javascript:;' data-nisn="<?= $tugas->nisn ?>" data-kelas="<?= $tugas->kelas ?>" data-prodi="<?= $tugas->prodi  ?>" data-kode_tugas="<?= $tugas->kode_tugas ?>" data-toggle='modal' data-target='#lihat_tugas' class='btn btn-info btn-xs'><?= $tugas->mata_pelajaran ?></a></td>
+                          <td><?= $tugas->judul_tugas ?></td>
                           <td><?= $tugas->nama_guru ?></td>
                           <td><?php 
                             if(empty($tugas->nilai)){
@@ -75,6 +78,7 @@
                               echo "<label class='badge badge-danger'>Di nilai</label>";
                             }
                            ?></td>
+                          <td><?= $tugas->tgl_diserahkan . "/" . $tugas->jam_diserahkan ?></td>
                           <td><?= $tugas->nilai ?></td>
                         </tr>
                         <?php endforeach ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Agu 2020 pada 11.59
+-- Waktu pembuatan: 21 Agu 2020 pada 15.17
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -99,8 +99,9 @@ CREATE TABLE `daftar_tugas` (
 --
 
 INSERT INTO `daftar_tugas` (`id`, `kode_tugas`, `nama_siswa`, `kelas`, `nisn`, `prodi`, `jawaban_siswa`, `tanggal`, `jam`, `file_tugas`) VALUES
-(12, '5lGLUytz', 'Dasep Depiyawan', 'XII', '1910001', 'TKJ', NULL, NULL, NULL, '6.jpg'),
-(13, '5lGLUytz', 'Adien', 'XII', '1910004', 'TKJ', NULL, NULL, NULL, '6.jpg');
+(16, 'ByqGDK6H', 'Dasep Depiyawan', 'XII', '1910001', 'TKJ', NULL, NULL, NULL, 'ppppp.png'),
+(18, '91UjjTt0', 'Dasep Depiyawan', 'XII', '1910001', 'TKJ', NULL, NULL, NULL, 'pdf1-2.JPG'),
+(20, 'wgYFVc8v', 'Dasep Depiyawan', 'XII', '1910001', 'TKJ', NULL, NULL, NULL, '3.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,8 +121,7 @@ CREATE TABLE `file_materi` (
 
 INSERT INTO `file_materi` (`id`, `kode_materi`, `file`) VALUES
 (43, '2aA8wk', 'Report.xlsx'),
-(44, 'BvnRni', '19101051_Dasep_Depiyawan.pdf'),
-(46, 'zIPIjD', 'NilaiUTSMatematika.csv');
+(44, 'BvnRni', '19101051_Dasep_Depiyawan.pdf');
 
 -- --------------------------------------------------------
 
@@ -243,8 +243,9 @@ CREATE TABLE `kumpul_tugas` (
 --
 
 INSERT INTO `kumpul_tugas` (`id`, `kode_tugas`, `nama_siswa`, `nisn`, `jawaban`, `file_jawaban`, `tgl_diserahkan`, `jam_diserahkan`, `nilai`) VALUES
-(5, '20209', 'Dasep Depiyawan', '1910001', 'Berikut jawaban terlampir\r\nTerimakasih', '2.jpg', '2020-08-12', '16:16:34', 75),
-(6, '20209', 'Adien', '1910004', 'Siap Bang Jago', '4j.jpg', '2020-08-12', '16:33:31', 60);
+(9, 'ByqGDK6H', 'Adien', '1910004', 'Ok bubos', 'tanggapan.png', '2020-08-21', '19:21:43', 75),
+(10, '91UjjTt0', 'Adien', '1910004', 'Ok', '4j.jpg', '2020-08-21', '19:22:42', 60),
+(11, 'wgYFVc8v', 'Adien', '1910004', 'SIap bubos', 'oplj.jpg', '2020-08-21', '19:23:08', 90);
 
 -- --------------------------------------------------------
 
@@ -303,8 +304,7 @@ CREATE TABLE `materi` (
 
 INSERT INTO `materi` (`id`, `judul_materi`, `keterangan_materi`, `kode_materi`, `jam_post`, `tgl_post`, `mata_pelajaran`, `kode_mapel`, `nama_guru`, `kode_guru`, `kelas`, `prodi`) VALUES
 (27, 'Fotosintesis', 'Lanjutan dari BAB 2', '2aA8wk', '16:00:31', '2020-08-20', 'IPA', '119', 'Dede Irfan', '2015', 'XII', 'TKJ'),
-(28, 'Pengertian Agama', 'BAB 1', 'BvnRni', '16:07:19', '2020-08-20', 'Pendidikan Agama Islam', '123', 'Asep Rochmat', '1945', 'XII', 'TKJ'),
-(30, 'Tentang Agama', 'BAB 2', 'zIPIjD', '16:28:20', '2020-08-20', 'Pendidikan Agama Islam', '123', 'Asep Rochmat', '1945', 'XII', 'TKJ');
+(28, 'Pengertian Agama', 'BAB 1', 'BvnRni', '16:07:19', '2020-08-20', 'Pendidikan Agama Islam', '123', 'Asep Rochmat', '1945', 'XII', 'TKJ');
 
 -- --------------------------------------------------------
 
@@ -372,7 +372,9 @@ CREATE TABLE `tugas` (
 --
 
 INSERT INTO `tugas` (`id`, `kode_guru`, `nama_guru`, `mata_pelajaran`, `kode_mapel`, `kelas`, `prodi`, `tanggal`, `jam`, `file_tugas`, `judul_tugas`, `keterangan`, `kode_tugas`) VALUES
-(25, '1945', 'Asep Rochmat', 'Pendidikan Agama Islam', '123', 'XII', 'TKJ', '2020-08-20', '16:58:59', '6.jpg', 'Tugas 1', 'Cari pengertian tentang Sholat', '5lGLUytz');
+(27, '1945', 'Asep Rochmat', 'Matematika', '122', 'XII', 'TKJ', '2020-08-21', '19:15:37', 'ppppp.png', 'Tugas 1', 'kerjakan', 'ByqGDK6H'),
+(28, '1945', 'Asep Rochmat', 'Matematika', '122', 'XII', 'TKJ', '2020-08-21', '19:16:05', 'pdf1-2.JPG', 'Tugas 2', 'Buat kerja kelompok', '91UjjTt0'),
+(29, '1945', 'Asep Rochmat', 'Pendidikan Agama Islam', '123', 'XII', 'TKJ', '2020-08-21', '19:18:18', '3.jpg', 'Tugas 1', 'Kerjakan !', 'wgYFVc8v');
 
 -- --------------------------------------------------------
 
@@ -512,7 +514,7 @@ ALTER TABLE `bank_soal`
 -- AUTO_INCREMENT untuk tabel `daftar_tugas`
 --
 ALTER TABLE `daftar_tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `file_materi`
@@ -542,7 +544,7 @@ ALTER TABLE `jawaban`
 -- AUTO_INCREMENT untuk tabel `kumpul_tugas`
 --
 ALTER TABLE `kumpul_tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `mata_pelajaran`
@@ -566,7 +568,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `uas`

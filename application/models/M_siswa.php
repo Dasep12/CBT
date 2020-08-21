@@ -97,4 +97,14 @@
  		return $this->db->delete($table);
  	}
 
+ 	//join akun dan profile guru
+ 	public function joinAkunProfile($where)
+ 	{
+ 		$this->db->select("*");
+ 		$this->db->from("guru");
+ 		$this->db->where("nipn",$where);
+ 		$this->db->join("akun" , "akun.nisn  = guru.nipn ");
+ 		return $this->db->get();
+ 	}
+
  }

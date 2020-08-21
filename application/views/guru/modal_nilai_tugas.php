@@ -50,7 +50,7 @@
 					},
 					success : function(e){
 						toastr.info(e);
-						
+						window.location.href="<?= base_url('guru/Daftar_tugas/kumpulanTugas/'. $jawaban->kode_tugas) ?>"
 					}
 				})
 			}

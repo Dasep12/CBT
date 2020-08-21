@@ -56,6 +56,7 @@
                           <tr>
                             <th>No</th>
                             <th>Kode Tugas</th>
+                            <th>Mata Pelajaran</th>
                             <th>Nama</th>
                             <th>NISN</th>
                             <th>Kelas / Prodi</th>
@@ -68,6 +69,7 @@
                               <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $result->kode_tugas ?></td>
+                                <td><?= $result->mata_pelajaran ?></td>
                                 <td><?= $result->nama_siswa ?></td>
                                 <td><?= $result->nisn ?></td>
                                 <td><?= $result->kelas . " / " . $result->prodi ?></td>

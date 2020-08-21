@@ -211,7 +211,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   $(document).ready(function(){
       //Date range picker
       $('#reservationdate').datetimepicker({
-          format: 'YYYY-MM-DD'
+          format: 'YYYY-MM-DD',
+          autoclose : true 
       });
 
       var Toast = Swal.mixin({

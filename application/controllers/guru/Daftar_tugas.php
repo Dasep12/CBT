@@ -35,14 +35,20 @@
  	public function delete()
  	{
  		$id = $this->input->get("id");
- 		$where = array('kode_tugas' => $id);
- 		
+ 		$where = array('id' => $id);
+ 		$deleteDaftarTugas = $this->db->get_where("tugas" , array("id" => $id))->row();
  		//hapus tugas tabel tugas dan table daftar tugas 
+ 		$del = $this->m_guru->delete(array("kode_tugas" => $deleteDaftarTugas->kode_tugas),"daftar_tugas");
  		$delete = $this->m_guru->delete($where,"tugas");
- 		$del = $this->m_guru->delete($where,"daftar_tugas");
- 		if($delete && $del){
- 			echo "Sukses";
- 		}
+ 			if($del == TRUE){
+			 		if($delete && $del){
+			 			echo "Sukses";
+			 		}
+ 			}else {
+ 				if($delete){
+ 					echo "Sukses";
+ 				}
+ 			}
  	}
 
  	//lihat daftar siswa yang sudah mengumpulkan tugas

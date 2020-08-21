@@ -79,7 +79,7 @@
                                   <a href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/word.png') ?>"></a>
                                 <?php }elseif($info == "pdf" ) { ?>
                                   <a href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/pdf.png') ?>"></a>
-                                <?php }elseif($info == "jpg" || $info == "jpeg" || $info == "png" ) { ?>
+                                <?php }elseif($info == "jpg" || $info == "jpeg" ||  $info == "png" || $info == "JPG" ) { ?>
                                   <a href="javascript:file('<?= $tugas->file_tugas ?>')"><img class="img img-thumbnail" height="30px" width="30px" src="<?= base_url('assets/dist/img/picture.png') ?>"></a>
                                 <?php }
                               } ?>

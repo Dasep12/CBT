@@ -102,34 +102,7 @@
 
 <!-- end of modal tugas siswa -->
 
-  <script type="text/javascript">
-    //hapus data tugas siswa
-function del(kode){
-    swal({
-      title: "Hapus data ?",
-      text: "data yang di hapus tidak bisa di kembalikan",
-      icon: "warning",
-      buttons: [true,"Tetap Hapus"],
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-          $.ajax({
-            url : "<?= base_url('guru/Daftar_tugas/delete') ?>",
-            method : "GET",
-            data : "id="+kode ,
-            success : function(response){
-                if(response == "Sukses"){
-                  toastr.success("Data Berhasil Terhapus");
-                  window.location.href="<?= base_url('guru/Daftar_tugas') ?>"
-                }             
-            }
-
-          })
-      }
-    });
-  } 
-   
+  <script type="text/javascript">   
   $(document).ready(function(){
 
      //tampilkan list transaksi ke dalam modal
@@ -163,8 +136,8 @@ function del(kode){
         for(var i = 0 ; i < response.length ; i++){
           data.push([ j , response[i].kode_tugas , response[i].judul_tugas , response[i].mata_pelajaran , response[i].kelas +" / "+ response[i].prodi , response[i].tanggal +"/"+ response[i].jam   , 
             "<a href='javascript:;' data-id="+ response[i].id + "  data-toggle='modal' data-target='#lihat_tugas' class='mr-1 btn btn-info btn-xs'>Lihat Tugas</a>"+
-            "<a href='javascript:del("+response[i].kode_tugas +")' class='btn btn-danger btn-xs'>delete</a> "+
-            "<a class='btn btn-primary btn-xs target='_blank' href='<?= base_url("guru/Daftar_tugas/kumpulanTugas/")?>"+response[i].kode_tugas+"'>Jawaban Siswa</a>" ])
+            '<a href="javascript:hapusTugas('+ response[i].id + ')" class="btn btn-danger btn-xs">delete</a> '+
+            "<a class='btn btn-primary btn-xs target='new' href='<?= base_url("guru/Daftar_tugas/kumpulanTugas/")?>"+response[i].kode_tugas+"'>Jawaban Siswa</a>" ])
         j++ ;
         }
            $('#tugas').DataTable({
@@ -173,4 +146,31 @@ function del(kode){
       }
     })
   })
+
+      //hapus data tugas siswa
+function hapusTugas(kode){
+    swal({
+      title: "Hapus data ?",
+      text: "data yang di hapus tidak bisa di kembalikan",
+      icon: "warning",
+      buttons: [true,"Tetap Hapus"],
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+          $.ajax({
+            url : "<?= base_url('guru/Daftar_tugas/delete') ?>",
+            method : "GET",
+            data : "id="+kode ,
+            success : function(response){
+                if(response == "Sukses"){
+                  toastr.success("Data Berhasil Terhapus");
+                  window.location.href="<?= base_url('guru/Daftar_tugas') ?>"
+                }             
+            }
+
+          })
+      }
+    });
+  } 
 </script>
