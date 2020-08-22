@@ -16,8 +16,40 @@
  		$where2 = array(
  			'nisn' => $this->session->userdata("nisn")
  		);
+ 		$data['hari'] = $this->hari();
  		$data['profile'] = $this->m_siswa->getSiswa($where2,"siswa")->row();
  		$this->template->load("template/template_siswa","ujian/form_ujian",$data);
+ 	}
+
+ 	function hari()
+ 	{
+ 		$data =  date("D");
+ 			switch ($data) {
+ 				case 'Mon':
+ 					$hari = "Senin" ;
+ 					break;
+ 				case 'Tue':
+ 					$hari = "Selasa" ;
+ 					break;
+ 				case 'Wed':
+ 					$hari = "Rabu" ;
+ 					break;
+ 				case 'Thu':
+ 					$hari = "Kamis" ;
+ 					break;
+ 				case 'Fri':
+ 					$hari = "Jum'at" ;
+ 					break;
+ 				case 'Sat':
+ 					$hari = "Sabtu" ;
+ 					break;
+
+ 				
+ 				default:
+ 					# code...
+ 					break;
+ 			}
+ 		return $hari ;
  	}
 
 

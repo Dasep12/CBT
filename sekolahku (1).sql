@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Agu 2020 pada 15.17
+-- Waktu pembuatan: 22 Agu 2020 pada 15.41
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -72,8 +72,22 @@ CREATE TABLE `bank_soal` (
   `b` varchar(255) DEFAULT NULL,
   `c` varchar(255) DEFAULT NULL,
   `d` varchar(255) DEFAULT NULL,
-  `jawaban` varchar(1) DEFAULT NULL
+  `jawaban` varchar(1) DEFAULT NULL,
+  `tanggal_ujian` varchar(100) DEFAULT NULL,
+  `mulai` varchar(100) DEFAULT NULL,
+  `selesai` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `bank_soal`
+--
+
+INSERT INTO `bank_soal` (`id`, `id_soal`, `bentuk_ujian`, `kode_soal`, `mata_pelajaran`, `kode_guru`, `nama_guru`, `kelas`, `soal`, `a`, `b`, `c`, `d`, `jawaban`, `tanggal_ujian`, `mulai`, `selesai`) VALUES
+(87, 1, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', NULL, NULL, NULL),
+(88, 2, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Ibukota Indonesia', 'Jakarta', 'Bandung', 'Lampung', 'Medan', 'A', NULL, NULL, NULL),
+(89, 3, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Indonesia Bagian dari Benua', 'Eropa', 'Antartika', 'Asia', 'Afrika', 'C', NULL, NULL, NULL),
+(90, 4, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', '1 Jam sama dengan', '2 menit', '50 detik', '40 detik', '60 menit', 'D', NULL, NULL, NULL),
+(91, 5, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Hokage Konoha ke 1', 'Yondaime', 'Hashirama', 'Kakashi', 'Naruto', 'B', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -148,7 +162,7 @@ CREATE TABLE `guru` (
 INSERT INTO `guru` (`id`, `nipn`, `nama`, `status`, `tempat_lahir`, `tgl_lahir`, `alamat`, `email`, `gelar`) VALUES
 (1, 2015, 'Dede Irfan', 'Pengajar', 'Bandung', '1996-05-06', 'Bandung Barat', 'dede@gmail.com', 'S,Kom'),
 (2, 2014, 'Kiki Wianjana', 'Pengajar', 'Bandung', '1996-08-19', 'Bandung Barat', 'kiki@gmail.com', 'S,Pd'),
-(3, 1945, 'Asep Rochmat', 'Pengajar', 'Bandung', '1976-04-12', 'Bandung Barat', 'asep@gmail.com', 'S,Pd'),
+(3, 1945, 'Asep Rochmat', 'Pengajar', 'Bandung', '1976-04-13', 'Bandung Barat', 'asep@gmail.com', 'S,Pd'),
 (4, 1896, 'Dika', 'Pengajar', 'Jakarta', '1979-01-19', 'Jakarta Barat', 'dika@gmail.ciom', 'S,Pd');
 
 -- --------------------------------------------------------
@@ -170,7 +184,7 @@ CREATE TABLE `jadwal_ujian` (
 --
 
 INSERT INTO `jadwal_ujian` (`id`, `kode_soal`, `mata_pelajaran`, `hari`, `jam`) VALUES
-(1, 'A001', 'Pendidikan Kewarganegaraan', '2020-07-24', '1'),
+(1, 'A001', 'Matematika', '2020-08-22', '1'),
 (2, 'A002', 'Pendidikan Agama Islam', '2020-07-24', '2'),
 (3, 'A003', 'Matematika', '2020-07-24', '2');
 
@@ -193,32 +207,6 @@ CREATE TABLE `jawaban` (
   `mata_pelajaran` varchar(100) DEFAULT NULL,
   `kode_soal` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `jawaban`
---
-
-INSERT INTO `jawaban` (`id`, `id_soal`, `bentuk_ujian`, `nama`, `nisn`, `jawaban`, `prodi`, `kelas`, `tanggal`, `mata_pelajaran`, `kode_soal`) VALUES
-(91, 1, 'UTS', 'Rima', '1920001', 'B', 'AKP', 'X', '2020-07-24', 'Matematika', 'A001'),
-(92, 2, 'UTS', 'Rima', '1920001', 'B', 'AKP', 'X', '2020-07-24', 'Matematika', 'A001'),
-(93, 3, 'UTS', 'Rima', '1920001', 'C', 'AKP', 'X', '2020-07-24', 'Matematika', 'A001'),
-(94, 4, 'UTS', 'Rima', '1920001', 'B', 'AKP', 'X', '2020-07-24', 'Matematika', 'A001'),
-(95, 5, 'UTS', 'Rima', '1920001', 'D', 'AKP', 'X', '2020-07-24', 'Matematika', 'A001'),
-(96, 1, 'UTS', 'Murry', '1930001', 'B', 'TKJ', 'XI', '2020-07-24', 'Matematika', 'A002'),
-(97, 2, 'UTS', 'Murry', '1930001', 'A', 'TKJ', 'XI', '2020-07-24', 'Matematika', 'A002'),
-(98, 3, 'UTS', 'Murry', '1930001', 'C', 'TKJ', 'XI', '2020-07-24', 'Matematika', 'A002'),
-(99, 4, 'UTS', 'Murry', '1930001', 'A', 'TKJ', 'XI', '2020-07-24', 'Matematika', 'A002'),
-(100, 5, 'UTS', 'Murry', '1930001', 'D', 'TKJ', 'XI', '2020-07-24', 'Matematika', 'A002'),
-(101, 1, 'UTS', 'Dasep Depiyawan', '1910001', 'D', 'TKJ', 'XII', '2020-07-24', 'Matematika', 'A003'),
-(102, 2, 'UTS', 'Dasep Depiyawan', '1910001', 'A', 'TKJ', 'XII', '2020-07-24', 'Matematika', 'A003'),
-(103, 3, 'UTS', 'Dasep Depiyawan', '1910001', 'B', 'TKJ', 'XII', '2020-07-24', 'Matematika', 'A003'),
-(104, 4, 'UTS', 'Dasep Depiyawan', '1910001', 'C', 'TKJ', 'XII', '2020-07-24', 'Matematika', 'A003'),
-(105, 5, 'UTS', 'Dasep Depiyawan', '1910001', 'A', 'TKJ', 'XII', '2020-07-24', 'Matematika', 'A003'),
-(106, 1, 'UTS', 'Anita', '1920002', 'B', 'AKP', 'X', '2020-07-25', 'Matematika', 'A001'),
-(107, 2, 'UTS', 'Anita', '1920002', 'A', 'AKP', 'X', '2020-07-25', 'Matematika', 'A001'),
-(108, 3, 'UTS', 'Anita', '1920002', 'D', 'AKP', 'X', '2020-07-25', 'Matematika', 'A001'),
-(109, 4, 'UTS', 'Anita', '1920002', 'B', 'AKP', 'X', '2020-07-25', 'Matematika', 'A001'),
-(110, 5, 'UTS', 'Anita', '1920002', 'A', 'AKP', 'X', '2020-07-25', 'Matematika', 'A001');
 
 -- --------------------------------------------------------
 
@@ -403,8 +391,16 @@ CREATE TABLE `uts` (
   `mata_pelajaran` varchar(40) DEFAULT NULL,
   `guru` varchar(100) DEFAULT NULL,
   `kelas` varchar(60) DEFAULT NULL,
-  `kode_guru` varchar(60) DEFAULT NULL
+  `kode_guru` varchar(60) DEFAULT NULL,
+  `tanggal` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `uts`
+--
+
+INSERT INTO `uts` (`id`, `kode_soal`, `mata_pelajaran`, `guru`, `kelas`, `kode_guru`, `tanggal`) VALUES
+(13, 'A001', 'Matematika', 'Asep Rochmat', 'XII', '1945', NULL);
 
 --
 -- Indexes for dumped tables
@@ -508,7 +504,7 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT untuk tabel `bank_soal`
 --
 ALTER TABLE `bank_soal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT untuk tabel `daftar_tugas`
@@ -580,7 +576,7 @@ ALTER TABLE `uas`
 -- AUTO_INCREMENT untuk tabel `uts`
 --
 ALTER TABLE `uts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

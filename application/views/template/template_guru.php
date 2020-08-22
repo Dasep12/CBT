@@ -195,6 +195,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="<?= base_url('assets') ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 
 <script type="text/javascript">
+$(function(){
+        //Date range picker
+      $('#reservationdate').datetimepicker({
+          format: 'YYYY-MM-DD',
+      });
+
+      $('#tanggal').datetimepicker({
+          format: 'DD MM dd YYYY',
+      });
+})
 
       //tampilkan waktu javascript 
      windows.setTimeout("waktu()",1000);
@@ -208,12 +218,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         document.getElementById('output').innerHTML  =  tanggal + " " + arrbulan[bulan] +  " " + tahun  + " / " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
       }
 
+
+
   $(document).ready(function(){
-      //Date range picker
-      $('#reservationdate').datetimepicker({
-          format: 'YYYY-MM-DD',
-          autoclose : true 
-      });
+
 
       var Toast = Swal.mixin({
         toast: true,

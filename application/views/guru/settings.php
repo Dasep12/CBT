@@ -143,7 +143,9 @@
             },
             success : function(e){
               toastr.success("Data Berhasil Update");
-              window.location.href="<?= base_url('guru/Settings') ?>"
+                setTimeout(function(){
+                window.location.href="<?= base_url('guru/Settings') ?>" 
+                },1000)
             }
           })
         }

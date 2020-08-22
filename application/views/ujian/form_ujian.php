@@ -1,4 +1,4 @@
-
+<?php date_default_timezone_set("Asia/Jakarta"); ?>
 
 <div class="row">
           <!-- left column -->
@@ -13,7 +13,9 @@
               <form role="form" id="biodata" method="post" >
                 <div class="card-body">
                   <div class="form-group">
-                  Senin , 12 Februari 2020
+                 <?php 
+                 echo $hari  . ", " . date("d M Y");
+                 ?>
                   <table class="table">
                   <?php foreach($jadwal as $jdwl) : ?>
                   <tr>

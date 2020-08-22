@@ -115,6 +115,26 @@
                         <input type="text" class="form-control" id="kode_soal" name="kode_soal" placeholder="masukan kode soal">
                       </div>
 
+                      <div class="form-group col-lg-3">
+                        <label>Tanggal Ujian</label>
+                        <div class="input-group date col-sm-12" id="reservationdate" data-target-input="nearest">
+                            <input type="text" name="tanggal" id="tanggal" class="form-control datetimepicker-input" data-target="#tanggal"/>
+                            <div class="input-group-append" data-target="#tanggal" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group col-lg-3">
+                        <label>Jam mulai</label>
+                        <input type="text" class="form-control" id="mulai" name="mulai" placeholder="masukan jam mulai">
+                      </div>
+
+                      <div class="form-group col-lg-3">
+                        <label>Jam selesai</label>
+                        <input type="text" class="form-control" id="selesai" name="selesai" placeholder="masukan jam selesai">
+                      </div>
+
 
 
                     </div>
