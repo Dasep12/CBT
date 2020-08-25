@@ -34,7 +34,65 @@
  	public function delete()
  	{
  		$id = $this->input->get("id");
- 		echo $id;
+ 		$delete = $this->m_admin->delete( array("id" => $id  ) ,"siswa");
+ 			if($delete){
+ 				echo "Sukses";
+ 			}else {
+ 				echo "Gagal";
+ 			}
+ 	}
+
+
+ 	//update poto profile
+ 	public function updatePoto()
+ 	{
+ 		$file = $_FILES['photo']['name'];
+ 		$id = $this->input->post("id");
+ 		$nameFile = $this->input->post("namePoto");
+ 		$this->load->library("upload");
+ 		$config['upload_path']	 = './assets/poto_siswa/' ;
+ 		$config['allowed_types'] = 'jpg|png|jpeg|gif' ;
+ 			$this->upload->initialize($config);
+ 			if(!$this->upload->do_upload("photo")){
+ 				echo "gagal upload ";
+ 			}else {
+ 				$poto = $this->upload->data("file_name");
+ 				$data = array(
+ 					'photo'		=> $poto 
+ 				);
+ 					$update = $this->m_admin->update($data,"siswa",array("id" => $id));
+ 					if($update){
+ 						echo "Berhasil";
+ 						//jika berhasil update hapus poto siswa yang lama 
+ 						if(!empty($nameFile)){
+ 							$file = './assets/poto_siswa/' . $nameFile ;
+ 							unlink($file);
+ 						}
+ 					}else {
+ 						echo "Gagal";
+ 					}
+ 			}
+ 	}
+
+ 	//update data siswa
+ 	public function updateData()
+ 	{
+ 		$data = array(
+		 			"nama"			=> $this->input->post("nama"),
+		 			"nisn"			=> $this->input->post("nisn"),
+		 			"prodi"			=> $this->input->post("prodi"),
+		 			"kelas"			=> $this->input->post("kelas"),
+		 			"tgl_lahir"		=> $this->input->post("tgl_lahir"),
+		 			"tempat_lahir"	=> $this->input->post("tempat_lahir"),
+		 			"alamat"		=> $this->input->post("alamat"),
+		 		);
+ 		$id = $this->input->post("id");
+ 		$update = $this->m_admin->update($data,"siswa",array("id" => $id));
+ 					if($update){
+ 						echo "Berhasil";
+ 					}else {
+ 						echo "Gagal";
+ 					}
  	}
 
  	public function hari()

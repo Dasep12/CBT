@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Agu 2020 pada 15.16
+-- Waktu pembuatan: 25 Agu 2020 pada 14.32
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -40,17 +40,8 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `username`, `nisn`, `password`, `role_id`) VALUES
-(1, 'Dasep', '1910001', '123', 3),
-(2, 'Ayu', '1910002', '123', 3),
-(3, 'Dede Irfan', '2015', '123', 2),
-(4, 'Kiki', '2014', '123', 2),
-(5, 'Asep Rochmat', '1945', '123', 2),
-(6, 'Rima', '1920001', '123', 3),
-(7, 'Murry', '1930001', '123', 3),
-(8, 'Anita', '1920002', '123', 3),
-(9, 'Ramlan', '1920005', '123', 3),
-(10, 'Rizal', '1920004', '123', 3),
-(11, 'Satudin', '1910004', '123', 3);
+(12, 'Dasep Depiyawan', '1910001', '123', 3),
+(13, 'AFAN WIJAYA ', '1910002', '123', 3);
 
 -- --------------------------------------------------------
 
@@ -236,6 +227,15 @@ CREATE TABLE `jurusan` (
   `kode_jurusan` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `jurusan`
+--
+
+INSERT INTO `jurusan` (`id`, `jurusan`, `kode_jurusan`) VALUES
+(1, 'Akomodasi Perhotelan', 'AKP'),
+(2, 'Teknik Kendaraan Ringan', 'TKR'),
+(3, 'Teknik Komputer & Jaringan', 'TKJ');
+
 -- --------------------------------------------------------
 
 --
@@ -336,30 +336,17 @@ CREATE TABLE `siswa` (
   `prodi` varchar(60) DEFAULT NULL,
   `tgl_lahir` varchar(60) DEFAULT NULL,
   `tempat_lahir` varchar(255) DEFAULT NULL,
-  `alamat` varchar(255) DEFAULT NULL
+  `alamat` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nisn`, `nama`, `kelas`, `prodi`, `tgl_lahir`, `tempat_lahir`, `alamat`) VALUES
-(1, 1910001, 'Dasep Depiyawan', 'XII', 'TKJ', '1999-04-13', 'Bandung Barat', 'Japat Jl Lodan Dalam II C'),
-(2, 1910002, 'Ayu Safitri', 'XII', 'AKP', '1997-05-12', 'Bandung Jakarta Surabaya', 'Jakarta Utara Muara Baru'),
-(3, 1910003, 'Murry', 'XII', 'TKR', '1998-02-14', 'Jakarta', 'Jakarta Utara'),
-(4, 1910004, 'Adien', 'XII', 'TKJ', '1998-02-14', 'Jakarta', 'Jakarta Utara'),
-(5, 1910005, 'Rizki', 'XII', 'AKP', '1998-03-14', 'Jakarta', 'Jakarta Utara'),
-(6, 1910006, 'Brian', 'XII', 'TKR', '1999-01-14', 'Jakarta', 'Jakarta Utara'),
-(7, 1920001, 'Rima', 'X', 'AKP', NULL, NULL, NULL),
-(8, 1920002, 'Anita', 'X', 'AKP', NULL, NULL, NULL),
-(9, 1920003, 'Renata', 'X', 'AKP', NULL, NULL, NULL),
-(10, 1920004, 'Rizal', 'X', 'TKJ', NULL, NULL, NULL),
-(11, 1920005, 'Ramlan', 'X', 'TKJ', NULL, NULL, NULL),
-(12, 1920006, 'Ruslan', 'X', 'TKJ', NULL, NULL, NULL),
-(13, 1920007, 'Rustam', 'X', 'TKR', NULL, NULL, NULL),
-(14, 1920008, 'Iwang', 'X', 'TKR', NULL, NULL, NULL),
-(15, 1920009, 'Genjo', 'X', 'TKR', NULL, NULL, NULL),
-(16, 1930001, 'Murry', 'XI', 'TKJ', NULL, NULL, NULL);
+INSERT INTO `siswa` (`id`, `nisn`, `nama`, `kelas`, `prodi`, `tgl_lahir`, `tempat_lahir`, `alamat`, `photo`) VALUES
+(22, 1910001, 'Dasep Depiyawan', 'X', 'TKJ', '1999-04-13', 'Bandung Barat', 'Jl Lodan Raya II C', 'lisnawattt_16_20200801_170640_0.jpg'),
+(23, 1910002, 'AFAN WIJAYA ', 'X', 'TKJ', '1998-11-26', 'Bandung Barat', 'Muara Baru ', 'oplj.jpg');
 
 -- --------------------------------------------------------
 
@@ -532,7 +519,7 @@ ALTER TABLE `uts`
 -- AUTO_INCREMENT untuk tabel `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `bank_soal`
@@ -574,7 +561,7 @@ ALTER TABLE `jawaban`
 -- AUTO_INCREMENT untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `kumpul_tugas`
@@ -598,7 +585,7 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas`

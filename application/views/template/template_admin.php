@@ -220,7 +220,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview <?php if($url == "Tambahsiswa" || $url == "Siswa"){ echo "menu-open" ; } ?> ">
+          <li class="nav-item has-treeview <?php if($url == "Tambahsiswa" || $url == "Siswa" || $url == "Akun_siswa"){ echo "menu-open" ; } ?> ">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
@@ -242,7 +242,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('assets') ?>/index3.html" class="nav-link">
+                <a href="<?= base_url('admin/Akun_siswa') ?>" class="nav-link <?php if($url == "Akun_siswa"){ echo "active" ; } ?> ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Akun Siswa</p>
                 </a>
@@ -251,56 +251,33 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
-                Layout Options
+                Guru
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../layout/top-nav.html" class="nav-link">
+                <a href="<?= base_url('admin/Guru') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Daftar Pengajar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../layout/top-nav-sidebar.html" class="nav-link">
+                <a href="<?= base_url('admin/Akun_Guru') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation + Sidebar</p>
+                  <p>Akun Pengajar</p>
                 </a>
               </li>
+
               <li class="nav-item">
-                <a href="../layout/boxed.html" class="nav-link">
+                <a href="<?= base_url('admin/Add_Guru') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Boxed</p>
+                  <p>Tambah Pengajar</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="../layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Sidebar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Navbar</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fixed Footer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Collapsed Sidebar</p>
-                </a>
-              </li>
+
             </ul>
           </li>
           <li class="nav-item has-treeview">

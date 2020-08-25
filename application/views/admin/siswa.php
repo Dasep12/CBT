@@ -71,11 +71,16 @@ function del(id){
             method : "GET",
             data : "id="+ id ,
             success : function(response){
-              /*  if(response == "Sukses"){
-                  toastr.success("Data Berhasil Terhapus");
-                  window.location.href="<?= base_url('admin/Siswa') ?>"
-                } */
-                alert(response);   
+                if(response == "Sukses"){
+                   swal({
+                      icon : "success",
+                      title : "Data di Hapus" ,
+                    }).then(function(){
+                      window.location.href="<?= base_url('admin/Siswa/') ?>"
+                    })
+                } else {
+                  toastr.error("Data Tidak Terhapus");
+                }
             }
 
           })
