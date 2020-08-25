@@ -202,9 +202,10 @@ $(function(){
       });
 
       $('#tanggal').datetimepicker({
-          format: 'DD MM dd YYYY',
+          format: 'MM DD YYYY',
       });
 })
+
 
       //tampilkan waktu javascript 
      windows.setTimeout("waktu()",1000);

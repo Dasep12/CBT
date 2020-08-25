@@ -127,12 +127,55 @@
 
                       <div class="form-group col-lg-3">
                         <label>Jam mulai</label>
-                        <input type="text" class="form-control" id="mulai" name="mulai" placeholder="masukan jam mulai">
+                        <div class="form-inline">
+                        <select name="jamMulai"  class="col-md-5 form-control">
+                          <?php for($i = 0 ; $i < 24 ; $i++)  : 
+                            if($i == 0){
+                             echo ' <option>00</option>' ;
+                            }elseif($i == 1 || $i == 2 || $i == 3 || $i == 4 || $i == 5 || $i == 6 || $i == 7  || $i == 8 || $i == 9  ){
+                             echo ' <option>0'. $i .'</option>' ;
+                            }else {
+                             echo ' <option>'. $i .'</option>' ;
+                            } endfor ; ?>
+                        </select>
+                        <label>:</label>
+                        <select name="menitMulai"  class="col-md-5 form-control">
+                          <?php for($i = 0 ; $i < 60 ; $i++)  : 
+                            if($i == 0){
+                             echo ' <option>00</option>' ;
+                            }elseif($i == 1 || $i == 2 || $i == 3 || $i == 4 || $i == 5 || $i == 6 || $i == 7  || $i == 8 || $i == 9  ){
+                             echo ' <option>0'. $i .'</option>' ;
+                            }else {
+                             echo ' <option>'. $i .'</option>' ;
+                            } endfor ; ?>
+                        </select>
+                      </div>
                       </div>
 
                       <div class="form-group col-lg-3">
-                        <label>Jam selesai</label>
-                        <input type="text" class="form-control" id="selesai" name="selesai" placeholder="masukan jam selesai">
+                        <label>Jam Selesai</label>
+                        <div class="form-inline">
+                        <select name="jamSelesai"  class="col-md-5 form-control">
+                          <?php for($i = 0 ; $i < 24 ; $i++)  : 
+                            if($i == 0){
+                             echo ' <option>00</option>' ;
+                            }elseif($i == 1 || $i == 2 || $i == 3 || $i == 4 || $i == 5 || $i == 6 || $i == 7  || $i == 8 || $i == 9  ){
+                             echo ' <option>0'. $i .'</option>' ;
+                            }else {
+                             echo ' <option>'. $i .'</option>' ;
+                            } endfor ; ?>
+                        </select>
+                        <label>:</label>
+                        <select name="menitSelesai"  class="col-md-5 form-control">
+                          <?php for($i = 0 ; $i < 60 ; $i++)  : 
+                            if($i == 0){
+                             echo ' <option>00</option>' ;
+                            }elseif($i == 1 || $i == 2 || $i == 3 || $i == 4 || $i == 5 || $i == 6 || $i == 7  || $i == 8 || $i == 9  ){
+                             echo ' <option>0'. $i .'</option>' ;
+                            }else {
+                             echo ' <option>'. $i .'</option>' ;
+                            } endfor ; ?>
+                        </select>
                       </div>
 
 

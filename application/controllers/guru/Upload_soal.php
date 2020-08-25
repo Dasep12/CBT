@@ -54,6 +54,10 @@ date_default_timezone_set("Asia/Jakarta");
         $soal_uas = array();
         $numrow = 1;
         $kode = $this->input->post('kode_soal') ;
+        $jamMulai = $this->input->post("jamMulai");
+        $jamSelesai = $this->input->post("jamSelesai");
+        $menitSelesai = $this->input->post("menitSelesai");
+        $tanggal = $this->input->post("tanggal");
         //cek kode soal sudah ada apa belum 
         $tableUts = $this->m_guru->searcKode("uts",$kode);
         $tableUas = $this->m_guru->searcKode("uas",$kode);
@@ -61,12 +65,14 @@ date_default_timezone_set("Asia/Jakarta");
         	echo "Gagal";
         }elseif($this->input->post("bentuk_ujian") == "UTS"){
  			//tampung data untuk di masukan ke tabel uts
+ 			//const selesai = new Date("08 23 2020 17:04:00");
 	 		$uts = array(
 	 			'kode_soal'				=> $this->input->post('kode_soal'),
 	 			'mata_pelajaran'		=> $this->input->post('mata_pelajaran'),
 	 			'kode_guru'				=> $this->session->userdata("nipn"),
 	 			'guru'					=> $this->input->post('nama_guru'),
 	 			'kelas'					=> $this->input->post('kelas'),
+	 			"tanggal"				=> $tanggal . " " . $jamSelesai . ":" . $menitSelesai . ":00" ,
 	 		);
 	 		foreach($sheet as $soal){
  					if($numrow > 1){
@@ -85,6 +91,9 @@ date_default_timezone_set("Asia/Jakarta");
 		                    		'c'			   		=> $soal['E'],
 		                    		'd'			   		=> $soal['F'],
 		                    		'jawaban'	   		=> $soal['G'],
+		                    		'mulai'				=> $jamMulai . ":" . $menitMulai . ":00" ,
+		                    		"selesai"			=> $jamSelesai . ":" . $menitSelesai . ":00",
+		                    		'tanggal_ujian'		=> $tanggal
 						));
  					}
  					$numrow++;
@@ -100,13 +109,14 @@ date_default_timezone_set("Asia/Jakarta");
  					echo "gagal";
  				}
  		}elseif($this->input->post("bentuk_ujian") == "UAS"){
- 			//tampung data untuk di masukan ke tabel uts
+ 			//tampung data untuk di masukan ke tabel uas
 	 		$uas = array(
 	 			'kode_soal'				=> $this->input->post('kode_soal'),
 	 			'mata_pelajaran'		=> $this->input->post('mata_pelajaran'),
 	 			'guru'					=> $this->input->post('nama_guru'),
 	 			'kode_guru'				=> $this->session->userdata("nipn"),
 	 			'kelas'					=> $this->input->post('kelas'),
+	 			"tanggal"				=> $tanggal . " " . $jamSelesai . ":" . $menitSelesai  . ":00" ,
 	 		);
 	 		foreach($sheet as $soal){
  					if($numrow > 1){
@@ -125,6 +135,9 @@ date_default_timezone_set("Asia/Jakarta");
 		                    		'c'			   		=> $soal['E'],
 		                    		'd'			   		=> $soal['F'],
 		                    		'jawaban'	   		=> $soal['G'],
+		                    		'mulai'				=> $jamMulai . ":" . $menitMulai . ":00" ,
+		                    		"selesai"			=> $jamSelesai . ":" . $menitSelesai . ":00",
+		                    		'tanggal_ujian'		=> $tanggal
 						));
  					}
  					$numrow++;

@@ -16,7 +16,7 @@ date_default_timezone_set("Asia/Jakarta");
  		//tampilkan soal pilihan ganda dari bank soal berdasarkan kode soal
  		$data['soal'] = $this->m_soal->cek("bank_soal",$where)->result();
  		$data['nosoal'] = $this->m_soal->cek("bank_soal",$where)->result();
-
+ 		$data['timer'] = $this->m_soal->cek("bank_soal",$where)->row();
  		//jumlah soal yang muncul
  		$data['jumlah'] = $this->m_soal->cek("bank_soal",$where)->num_rows();
 

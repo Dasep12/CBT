@@ -14,7 +14,7 @@
                 <div class="card-body">
                   <div class="form-group">
                  <?php 
-                 echo $hari  . ", " . date("d M Y");
+                 echo $hari ;
                  ?>
                   <table class="table">
                   <?php foreach($jadwal as $jdwl) : ?>

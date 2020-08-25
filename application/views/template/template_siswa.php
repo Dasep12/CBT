@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"> Sistem Informasi DWIPA</h1>
+            <h1 class="m-0 text-dark">Aplikasi E-Learning SMKN45</h1>
           </div>
           <div class="col-sm-6">
             <!-- <ol class="breadcrumb float-sm-right">

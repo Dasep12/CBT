@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Agu 2020 pada 15.41
+-- Waktu pembuatan: 23 Agu 2020 pada 15.16
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -83,11 +83,11 @@ CREATE TABLE `bank_soal` (
 --
 
 INSERT INTO `bank_soal` (`id`, `id_soal`, `bentuk_ujian`, `kode_soal`, `mata_pelajaran`, `kode_guru`, `nama_guru`, `kelas`, `soal`, `a`, `b`, `c`, `d`, `jawaban`, `tanggal_ujian`, `mulai`, `selesai`) VALUES
-(87, 1, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', NULL, NULL, NULL),
-(88, 2, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Ibukota Indonesia', 'Jakarta', 'Bandung', 'Lampung', 'Medan', 'A', NULL, NULL, NULL),
-(89, 3, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Indonesia Bagian dari Benua', 'Eropa', 'Antartika', 'Asia', 'Afrika', 'C', NULL, NULL, NULL),
-(90, 4, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', '1 Jam sama dengan', '2 menit', '50 detik', '40 detik', '60 menit', 'D', NULL, NULL, NULL),
-(91, 5, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Hokage Konoha ke 1', 'Yondaime', 'Hashirama', 'Kakashi', 'Naruto', 'B', NULL, NULL, NULL);
+(97, 1, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', '08 23 2020', '17:00:00', '18:00:00'),
+(98, 2, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Ibukota Indonesia', 'Jakarta', 'Bandung', 'Lampung', 'Medan', 'A', '08 23 2020', '17:00:00', '18:00:00'),
+(99, 3, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Indonesia Bagian dari Benua', 'Eropa', 'Antartika', 'Asia', 'Afrika', 'C', '08 23 2020', '17:00:00', '18:00:00'),
+(100, 4, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', '1 Jam sama dengan', '2 menit', '50 detik', '40 detik', '60 menit', 'D', '08 23 2020', '17:00:00', '18:00:00'),
+(101, 5, 'UTS', 'A001', 'Matematika', '1945', 'Asep Rochmat', 'XII', 'Hokage Konoha ke 1', 'Yondaime', 'Hashirama', 'Kakashi', 'Naruto', 'B', '08 23 2020', '17:00:00', '18:00:00');
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,7 @@ CREATE TABLE `jadwal_ujian` (
 --
 
 INSERT INTO `jadwal_ujian` (`id`, `kode_soal`, `mata_pelajaran`, `hari`, `jam`) VALUES
-(1, 'A001', 'Matematika', '2020-08-22', '1'),
+(1, 'A001', 'Matematika', '2020-08-23', '1'),
 (2, 'A002', 'Pendidikan Agama Islam', '2020-07-24', '2'),
 (3, 'A003', 'Matematika', '2020-07-24', '2');
 
@@ -206,6 +206,34 @@ CREATE TABLE `jawaban` (
   `tanggal` date DEFAULT NULL,
   `mata_pelajaran` varchar(100) DEFAULT NULL,
   `kode_soal` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `jawaban`
+--
+
+INSERT INTO `jawaban` (`id`, `id_soal`, `bentuk_ujian`, `nama`, `nisn`, `jawaban`, `prodi`, `kelas`, `tanggal`, `mata_pelajaran`, `kode_soal`) VALUES
+(121, 1, 'UTS', 'Adien', '1910004', 'A', 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(122, 2, 'UTS', 'Adien', '1910004', 'A', 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(123, 3, 'UTS', 'Adien', '1910004', 'A', 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(124, 4, 'UTS', 'Adien', '1910004', 'A', 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(125, 5, 'UTS', 'Adien', '1910004', 'B', 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(126, 1, 'UTS', 'Dasep Depiyawan', '1910001', NULL, 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(127, 2, 'UTS', 'Dasep Depiyawan', '1910001', NULL, 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(128, 3, 'UTS', 'Dasep Depiyawan', '1910001', NULL, 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(129, 4, 'UTS', 'Dasep Depiyawan', '1910001', NULL, 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001'),
+(130, 5, 'UTS', 'Dasep Depiyawan', '1910001', NULL, 'TKJ', 'XII', '2020-08-23', 'Matematika', 'A001');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jurusan`
+--
+
+CREATE TABLE `jurusan` (
+  `id` int(11) NOT NULL,
+  `jurusan` varchar(100) DEFAULT NULL,
+  `kode_jurusan` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -400,7 +428,7 @@ CREATE TABLE `uts` (
 --
 
 INSERT INTO `uts` (`id`, `kode_soal`, `mata_pelajaran`, `guru`, `kelas`, `kode_guru`, `tanggal`) VALUES
-(13, 'A001', 'Matematika', 'Asep Rochmat', 'XII', '1945', NULL);
+(15, 'A001', 'Matematika', 'Asep Rochmat', 'XII', '1945', '08 23 2020 18:00:00');
 
 --
 -- Indexes for dumped tables
@@ -446,6 +474,12 @@ ALTER TABLE `jadwal_ujian`
 -- Indeks untuk tabel `jawaban`
 --
 ALTER TABLE `jawaban`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `jurusan`
+--
+ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -504,7 +538,7 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT untuk tabel `bank_soal`
 --
 ALTER TABLE `bank_soal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT untuk tabel `daftar_tugas`
@@ -534,7 +568,13 @@ ALTER TABLE `jadwal_ujian`
 -- AUTO_INCREMENT untuk tabel `jawaban`
 --
 ALTER TABLE `jawaban`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+
+--
+-- AUTO_INCREMENT untuk tabel `jurusan`
+--
+ALTER TABLE `jurusan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `kumpul_tugas`
@@ -576,7 +616,7 @@ ALTER TABLE `uas`
 -- AUTO_INCREMENT untuk tabel `uts`
 --
 ALTER TABLE `uts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
