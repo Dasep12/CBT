@@ -250,7 +250,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link nav-link <?php if($url == "Pengajar"){ echo "menu-open" ; } ?>">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Guru
@@ -259,7 +259,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('admin/Guru') ?>" class="nav-link">
+                <a href="<?= base_url('admin/Pengajar') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar Pengajar</p>
                 </a>
