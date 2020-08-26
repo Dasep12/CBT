@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 25 Agu 2020 pada 14.32
+-- Waktu pembuatan: 26 Agu 2020 pada 14.11
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -41,7 +41,9 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`id`, `username`, `nisn`, `password`, `role_id`) VALUES
 (12, 'Dasep Depiyawan', '1910001', '123', 3),
-(13, 'AFAN WIJAYA ', '1910002', '123', 3);
+(13, 'AFAN WIJAYA ', '1910002', '123', 3),
+(14, 'Lisnawati', '2015', '123', 2),
+(16, 'Asep Rochmat', '1945', '123', 2);
 
 -- --------------------------------------------------------
 
@@ -139,22 +141,23 @@ CREATE TABLE `guru` (
   `nipn` int(25) DEFAULT NULL,
   `nama` varchar(150) DEFAULT NULL,
   `status` varchar(100) DEFAULT NULL,
+  `gender` varchar(100) DEFAULT NULL,
   `tempat_lahir` varchar(250) DEFAULT NULL,
   `tgl_lahir` date DEFAULT NULL,
   `alamat` varchar(200) DEFAULT NULL,
   `email` varchar(150) DEFAULT NULL,
-  `gelar` varchar(100) DEFAULT NULL
+  `gelar` varchar(100) DEFAULT NULL,
+  `no_hp` varchar(100) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `guru`
 --
 
-INSERT INTO `guru` (`id`, `nipn`, `nama`, `status`, `tempat_lahir`, `tgl_lahir`, `alamat`, `email`, `gelar`) VALUES
-(1, 2015, 'Dede Irfan', 'Pengajar', 'Bandung', '1996-05-06', 'Bandung Barat', 'dede@gmail.com', 'S,Kom'),
-(2, 2014, 'Kiki Wianjana', 'Pengajar', 'Bandung', '1996-08-19', 'Bandung Barat', 'kiki@gmail.com', 'S,Pd'),
-(3, 1945, 'Asep Rochmat', 'Pengajar', 'Bandung', '1976-04-13', 'Bandung Barat', 'asep@gmail.com', 'S,Pd'),
-(4, 1896, 'Dika', 'Pengajar', 'Jakarta', '1979-01-19', 'Jakarta Barat', 'dika@gmail.ciom', 'S,Pd');
+INSERT INTO `guru` (`id`, `nipn`, `nama`, `status`, `gender`, `tempat_lahir`, `tgl_lahir`, `alamat`, `email`, `gelar`, `no_hp`, `photo`) VALUES
+(1, 2015, 'Lisnawati', 'Pengajar', 'Perempuan', 'Bandung', '1996-05-06', 'Bandung Barat', 'lisna@gmail.com', 'S,Kom', '081809064345', 'lisnawattt_16_20200801_170640_0.jpg'),
+(5, 1945, 'Asep Rochmat', 'Pengajar', 'Laki-Laki', 'Bandung Barat', '1980-11-26', 'Batujajar Kab bandung barat', 'asep@gmail.com', 'S,Kom M.Hum', '081809064032', 'tanggapan.png');
 
 -- --------------------------------------------------------
 
@@ -519,7 +522,7 @@ ALTER TABLE `uts`
 -- AUTO_INCREMENT untuk tabel `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `bank_soal`
@@ -543,7 +546,7 @@ ALTER TABLE `file_materi`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_ujian`

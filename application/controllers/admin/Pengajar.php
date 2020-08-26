@@ -31,6 +31,72 @@ class Pengajar extends CI_Controller
  	}
 
 
+ 	//update poto profile
+ 	public function updatePoto()
+ 	{
+ 		$file = $_FILES['photo']['name'];
+ 		$id = $this->input->post("id");
+ 		$nameFile = $this->input->post("namePoto");
+ 		$this->load->library("upload");
+ 		$config['upload_path']	 = './assets/poto_pengajar/' ;
+ 		$config['allowed_types'] = 'jpg|png|jpeg|gif' ;
+ 			$this->upload->initialize($config);
+ 			if(!$this->upload->do_upload("photo")){
+ 				echo "gagal upload ";
+ 			}else {
+ 				$poto = $this->upload->data("file_name");
+ 				$data = array(
+ 					'photo'		=> $poto 
+ 				);
+ 					$update = $this->m_admin->update($data,"guru",array("id" => $id));
+ 					if($update){
+ 						echo "Berhasil";
+ 						//jika berhasil update hapus poto siswa yang lama 
+ 						if(!empty($nameFile)){
+ 							$file = './assets/poto_pengajar/' . $nameFile ;
+ 							unlink($file);
+ 						}
+ 					}else {
+ 						echo "Gagal";
+ 					}
+ 			}
+ 	}
+
+
+ 	//update data pengajar
+ 	public function updateData()
+ 	{
+ 		$data = array(
+		 			"nama"			=> $this->input->post("nama"),
+		 			"nipn"			=> $this->input->post("nipn"),
+		 			"gelar"			=> $this->input->post("gelar"),
+		 			"email"			=> $this->input->post("email"),
+		 			"gender"		=> $this->input->post("gender"),
+		 			"no_hp"			=> $this->input->post("no_hp"),
+		 			"tgl_lahir"		=> $this->input->post("tgl_lahir"),
+		 			"tempat_lahir"	=> $this->input->post("tempat_lahir"),
+		 		);
+ 		$id = $this->input->post("id");
+ 		$update = $this->m_admin->update($data,"guru",array("id" => $id));
+ 					if($update){
+ 						echo "Berhasil";
+ 					}else {
+ 						echo "Gagal";
+ 					}
+ 	}
+
+
+ 	//hapus data 
+ 	public function delete()
+ 	{
+ 		$id = $this->input->get("id");
+ 		$delete = $this->m_admin->delete( array("id" => $id  ) ,"guru");
+ 			if($delete){
+ 				echo "Sukses";
+ 			}else {
+ 				echo "Gagal";
+ 			}
+ 	}
 
  	public function hari()
  	{

@@ -192,7 +192,7 @@
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Administrator</span>
+      <span class="brand-text font-weight-light">Admin E-Learning</span>
     </a>
 
     <!-- Sidebar -->
@@ -200,7 +200,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?= base_url('assets') ?>/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+          <img src="<?= base_url('assets') ?>/dist/img/admin2.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">Alexander Pierce</a>
@@ -249,8 +249,8 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link nav-link <?php if($url == "Pengajar"){ echo "menu-open" ; } ?>">
+          <li class="nav-item has-treeview <?php if($url == "Pengajar" || $url == "Akun_pengajar" || $url == "Tambahguru"  ){ echo "menu-open" ; } ?>">
+            <a href="#" class="nav-link nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Guru
@@ -259,20 +259,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('admin/Pengajar') ?>" class="nav-link">
+                <a href="<?= base_url('admin/Pengajar') ?>" class="nav-link <?php if($url == "Pengajar"){ echo "active" ; } ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Daftar Pengajar</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/Akun_Guru') ?>" class="nav-link">
+                <a href="<?= base_url('admin/Akun_pengajar') ?>" class="nav-link <?php if($url == "Akun_pengajar"){ echo "active" ; } ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Akun Pengajar</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="<?= base_url('admin/Add_Guru') ?>" class="nav-link">
+                <a href="<?= base_url('admin/Tambahguru') ?>" class="nav-link <?php if($url == "Tambahguru"){ echo "active" ; } ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tambah Pengajar</p>
                 </a>
@@ -282,29 +282,23 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Charts
+                Jurusan
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../charts/chartjs.html" class="nav-link">
+                <a href="<?= base_url('admin/Jurusan') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>Prodi / Jurusan</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../charts/flot.html" class="nav-link">
+                <a href="<?= base_url('admin/Tambahjurusan') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Flot</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inline</p>
+                  <p>Tambah Prodi / Jurusan</p>
                 </a>
               </li>
             </ul>
@@ -485,7 +479,8 @@
 </div>
 <!-- ./wrapper -->
 
-
+<!-- file tempat ajax dilakukan -->
+<script src="<?= base_url('assets') ?>/js/ajax.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?= base_url('assets') ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->

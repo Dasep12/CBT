@@ -126,7 +126,7 @@
     $("#tugas").DataTable();
 
 
-       //tampilkan list transaksi ke dalam modal
+       //tampilkan list tugas ke dalam modal
     $("#lihat_tugas").on('show.bs.modal',function(e){
         var div = $(e.relatedTarget);
         var modal = $(this);

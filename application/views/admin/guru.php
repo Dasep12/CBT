@@ -76,7 +76,7 @@ function del(id){
                       icon : "success",
                       title : "Data di Hapus" ,
                     }).then(function(){
-                      window.location.href="<?= base_url('admin/Siswa/') ?>"
+                      window.location.href="<?= base_url('admin/Pengajar/') ?>"
                     })
                 } else {
                   toastr.error("Data Tidak Terhapus");
