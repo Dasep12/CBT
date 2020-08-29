@@ -38,6 +38,7 @@ date_default_timezone_set("Asia/Jakarta");
  			}
 
 
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$this->template->load("template/template_guru","guru/upload_soal",$data);
  	}
 

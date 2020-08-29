@@ -7,6 +7,7 @@
  {
  	public function index()
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
   		//daftar mata pelajaran yang diambil 
  		$data['mata_pelajaran'] = $this->m_guru->cariData(array("pengajar" => $this->session->userdata("nipn")),"mata_pelajaran");
  		$this->template->load("template/template_guru","guru/nilai_ujian",$data);
@@ -16,6 +17,7 @@
  	//view list siswa yang ikut ujian
  	public function view()
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$data['jawaban_siswa'] = array();
 
 			$ujian = $this->input->post("tipe_ujian");

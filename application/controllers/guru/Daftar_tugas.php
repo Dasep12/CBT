@@ -11,7 +11,8 @@
 
  	public function index()
  	{
- 		$this->template->load("template/template_guru","guru/daftar_tugas");
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
+ 		$this->template->load("template/template_guru","guru/daftar_tugas",$data);
  	}
 
  	//ambil data dari json 
@@ -54,6 +55,7 @@
  	//lihat daftar siswa yang sudah mengumpulkan tugas
  	public function kumpulanTugas($kode)
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$data['join_tugas'] = $this->m_guru->joinTugas($kode)->result();
  		$this->template->load("template/template_guru",'guru/kumpulkan_tugas',$data);
 

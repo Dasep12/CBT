@@ -8,7 +8,7 @@
               <div class="card-body box-profile">
                 <div class="text-center">
                   <img class="profile-user-img img-fluid img-circle"
-                       src="<?= base_url("assets") ?>/dist/profile/avatar4.png">
+                        src="<?= base_url("assets/poto_pengajar/". $profile->photo) ?>">
                 </div>
 
                 <h3 class="profile-username text-center"></h3>

@@ -8,6 +8,7 @@ class Posting_tugas extends CI_Controller
 {
 	public function index()
 	{
+		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
 		$where = array("pengajar"  => $this->session->userdata("nipn"));
 		$data['mapel'] = $this->m_guru->cariData($where,"mata_pelajaran");
 		$data['mapel2'] = $this->m_guru->cariData($where,"mata_pelajaran")->row();

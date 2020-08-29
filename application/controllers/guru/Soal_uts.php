@@ -8,6 +8,7 @@
  {
  	public function index()
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$where = array('kode_guru' => $this->session->userdata("nipn")) ;
  		$data['list_uts']   = $this->m_guru->cariData($where,"uts")->result();
   		$this->template->load("template/template_guru","guru/uts",$data);
@@ -17,6 +18,7 @@
  	//review soal uts berdasarkan kode soal
  	public function view_uts($kode)
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$data['soal'] = $this->m_guru->showSoal($kode)->result();
   		$this->template->load("template/template_guru","guru/view_soal",$data);
  	}
@@ -25,6 +27,7 @@
  	// list soal uts untuk di edit
  	public function edit_soal($kode)
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$data['edit_soal'] = $this->m_guru->showSoal($kode)->result();
   		$this->template->load("template/template_guru","guru/edit_soal",$data);
  	}
@@ -33,6 +36,7 @@
  	//form untuk edit data uts 
  	public function form_edit($id)
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$data['soal'] = $this->m_guru->showPerid($id)->row();
  		$data['kode'] = $data['soal']->kode_soal ;
  		$this->template->load("template/template_guru","guru/form_edit_soal",$data);

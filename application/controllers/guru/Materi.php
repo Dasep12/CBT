@@ -8,6 +8,7 @@ date_default_timezone_set('Asia/Jakarta');
  {
  	public function index()
  	{	
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$where = array("kode_guru"	=> $this->session->userdata("nipn"));
  		$data['mapel']  = $this->m_guru->cariData($where,"materi")->result();
  		 $where = array("pengajar"	=> $this->session->userdata("nipn"));

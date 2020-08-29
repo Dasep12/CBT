@@ -8,6 +8,7 @@
  {
  	public function index()
  	{
+ 		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$where = $this->session->userdata("nipn");
  		$data['profile'] = $this->m_siswa->joinAkunProfile($where)->row();
  		$this->template->load("template/template_guru","guru/settings",$data);
