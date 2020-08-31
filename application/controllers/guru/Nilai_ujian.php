@@ -9,7 +9,10 @@
  	{
  		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
   		//daftar mata pelajaran yang diambil 
- 		$data['mata_pelajaran'] = $this->m_guru->cariData(array("pengajar" => $this->session->userdata("nipn")),"mata_pelajaran");
+ 		$data['mata_pelajaran'] = $this->m_guru->cariData(array("kode_pengajar" => $this->session->userdata("nipn")),"mata_pelajaran");
+
+ 		//list jurusan
+ 		$data['jurusan'] = $this->m_guru->getData("jurusan");
  		$this->template->load("template/template_guru","guru/nilai_ujian",$data);
  	}
 
@@ -24,10 +27,11 @@
 	 		$kelas = $this->input->post("kelas");
 	 		$prodi = $this->input->post("prodi");
 	 		$mapel = $this->input->post("mata_pelajaran");
+	 		$kode_soal  = $this->input->post("kode_soal");
 
 	 		$where = array(
 	 			'prodi'		=> $prodi ,
-	 			'kelas'		=> $kelas
+	 			'kelas'		=> $kelas,
 	 		);
 
 	 	//kirim variable data untuk cek soal dan jawaban berdasarkan inputan user
@@ -35,6 +39,7 @@
 	 	$data['kelas']  = $kelas ;
 	 	$data['prodi']  = $prodi ;
 	 	$data['mapel']  = $mapel ;
+	 	$data['kode_soal'] = $kode_soal ;
 
 
  		//tampilkan data siswa 
@@ -47,12 +52,13 @@
  	//jawaban dari siswa tampilkan kedalam model
  	public function lihat_jawaban()
  	{
+ 		$data['kode_soal'] = $this->input->get("kode_soal");
  		$data['nisn'] = $this->input->get("nisn")  ; 
  		$data['ujian'] = $this->input->get("ujian")  ; 
  		$data['prodi'] = $this->input->get("prodi")  ; 
  		$data['kelas'] = $this->input->get("kelas")  ; 
  		$data['mapel'] = $this->input->get("mapel")  ; 
- 		
+
  		$data['benar'] = 0 ;
  		$data['salah'] = 0 ;
  		$where = array(
@@ -61,12 +67,14 @@
  				'prodi'					=> $data['prodi'],
  				'kelas'					=> $data['kelas'],
  				'mata_pelajaran'		=> $data['mapel'],	
+ 				'kode_soal'				=> $data['kode_soal'],	
  		);
 
  		$where2  = array(
  			'kelas'					=> $data['kelas'],
  			'mata_pelajaran'		=> $data['mapel'],
  			'bentuk_ujian'			=> $data['ujian'],
+ 			'kode_soal'				=> $data['kode_soal'],
  		);
  		//tampilkan jawaban ujian siswa berdasarkan paramater where 
  		$data['jawaban_siswa']  = $this->m_guru->cariData($where,"jawaban");

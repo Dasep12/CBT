@@ -29,7 +29,7 @@ date_default_timezone_set("Asia/Jakarta");
                     // Masukan variabel $sheet ke dalam array data yang nantinya akan di kirim ke file form.php
                     // Variabel $sheet tersebut berisi data-data yang sudah diinput di dalam excel yang sudha di upload sebelumnya
                     $data['guru']  = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->result();
-                    $data['mapel']  = $this->m_guru->cariData(array("pengajar" => $this->session->userdata("nipn")),"mata_pelajaran")->result();
+                    $data['mapel']  = $this->m_guru->cariData(array("kode_pengajar" => $this->session->userdata("nipn")),"mata_pelajaran")->result();
                     $data['sheet'] = $sheet ;
                 }else{
                     $data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
@@ -37,7 +37,7 @@ date_default_timezone_set("Asia/Jakarta");
                 }
  			}
 
-
+ 		$data['jurusan'] = $this->m_admin->getData("jurusan")->result();
  		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$this->template->load("template/template_guru","guru/upload_soal",$data);
  	}
@@ -56,12 +56,22 @@ date_default_timezone_set("Asia/Jakarta");
         $numrow = 1;
         $kode = $this->input->post('kode_soal') ;
         $jamMulai = $this->input->post("jamMulai");
+        $menitMulai = $this->input->post("menitMulai");
         $jamSelesai = $this->input->post("jamSelesai");
         $menitSelesai = $this->input->post("menitSelesai");
         $tanggal = $this->input->post("tanggal");
         //cek kode soal sudah ada apa belum 
         $tableUts = $this->m_guru->searcKode("uts",$kode);
         $tableUas = $this->m_guru->searcKode("uas",$kode);
+
+        //input data prodi 
+        $jurusan = $this->m_guru->cariData(array("id" => $this->input->post("prodi")),"jurusan")->row();
+
+        //data pengajar / guru b.study soal ujian
+        $pengajar  = $this->m_guru->cariData(array("nipn" => $this->session->userdata('nipn')),"guru")->row();
+
+
+        //jika kode sudah ada maka inputan gagal 
         if($tableUts > 0 || $tableUas > 0){
         	echo "Gagal";
         }elseif($this->input->post("bentuk_ujian") == "UTS"){
@@ -73,6 +83,8 @@ date_default_timezone_set("Asia/Jakarta");
 	 			'kode_guru'				=> $this->session->userdata("nipn"),
 	 			'guru'					=> $this->input->post('nama_guru'),
 	 			'kelas'					=> $this->input->post('kelas'),
+	 			'prodi'					=> $jurusan->jurusan ,
+	 			'kode_prodi'			=> $jurusan->kode_jurusan ,
 	 			"tanggal"				=> $tanggal . " " . $jamSelesai . ":" . $menitSelesai . ":00" ,
 	 		);
 	 		foreach($sheet as $soal){
@@ -85,7 +97,10 @@ date_default_timezone_set("Asia/Jakarta");
 									'mata_pelajaran'	=> $this->input->post('mata_pelajaran'),
 									'kode_guru'			=> $this->session->userdata("nipn"),
 									'nama_guru'			=> $this->input->post('nama_guru'),
-									'kelas'					=> $this->input->post('kelas'),
+									'gelar'				=> $pengajar->gelar ,
+									'kelas'				=> $this->input->post('kelas'),
+									'prodi'				=> $jurusan->jurusan ,
+									'kode_prodi'		=> $jurusan->kode_jurusan ,
 		                    		'soal'			    => $soal['B'],
 		                    		'a'			  		=> $soal['C'],
 		                    		'b'			    	=> $soal['D'],
@@ -114,14 +129,16 @@ date_default_timezone_set("Asia/Jakarta");
 	 		$uas = array(
 	 			'kode_soal'				=> $this->input->post('kode_soal'),
 	 			'mata_pelajaran'		=> $this->input->post('mata_pelajaran'),
-	 			'guru'					=> $this->input->post('nama_guru'),
 	 			'kode_guru'				=> $this->session->userdata("nipn"),
+	 			'guru'					=> $this->input->post('nama_guru'),
 	 			'kelas'					=> $this->input->post('kelas'),
-	 			"tanggal"				=> $tanggal . " " . $jamSelesai . ":" . $menitSelesai  . ":00" ,
+	 			'prodi'					=> $jurusan->jurusan ,
+	 			'kode_prodi'			=> $jurusan->kode_jurusan ,
+	 			"tanggal"				=> $tanggal . " " . $jamSelesai . ":" . $menitSelesai . ":00" ,
 	 		);
 	 		foreach($sheet as $soal){
  					if($numrow > 1){
-						// push (add) array data soal ke variabel soal_uts
+						// push (add) array data soal ke variabel soal_uas
 						array_push($soal_uas, array(
 									'id_soal'		    => $soal['A'],
 									'bentuk_ujian'	    => $this->input->post("bentuk_ujian") ,
@@ -129,7 +146,10 @@ date_default_timezone_set("Asia/Jakarta");
 									'mata_pelajaran'	=> $this->input->post('mata_pelajaran'),
 									'kode_guru'			=> $this->session->userdata("nipn"),
 									'nama_guru'			=> $this->input->post('nama_guru'),
-									'kelas'					=> $this->input->post('kelas'),
+									'gelar'				=> $pengajar->gelar ,
+									'kelas'				=> $this->input->post('kelas'),
+									'prodi'				=> $jurusan->jurusan ,
+									'kode_prodi'		=> $jurusan->kode_jurusan ,
 		                    		'soal'			    => $soal['B'],
 		                    		'a'			  		=> $soal['C'],
 		                    		'b'			    	=> $soal['D'],
@@ -146,7 +166,7 @@ date_default_timezone_set("Asia/Jakarta");
 
  				//upload soal ke abel bank soal
  				$upload_soal = $this->m_guru->tambahSoal($soal_uas,"bank_soal"); 
- 				//input data ke table uts 
+ 				//input data ke table uas 
 		 		$list_uas =  $this->m_guru->input("uas",$uas);
  				if($upload_soal && $list_uas){
  					echo "Sukses2";

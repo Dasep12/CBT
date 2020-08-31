@@ -6,8 +6,12 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="<?= base_url("assets") ?>/dist/profile/avatar4.png">
+
+                  <?php if(empty($profile->photo)) { ?> 
+                  <img class="profile-user-img img-fluid img-circle"   src="<?= base_url("assets/dist/img/siswa.png") ?>">
+                  <?php }else { ?>
+                  <img class="profile-user-img img-fluid img-circle"   src="<?= base_url("assets/poto_siswa/" . $profile->photo) ?>">
+                  <?php } ?>
                 </div>
 
                 <h3 class="profile-username text-center"><?= $profile->nama ?></h3>

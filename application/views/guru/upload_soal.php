@@ -111,6 +111,16 @@
                       </div>
 
                       <div class="form-group col-lg-3">
+                        <label>Pilih Prodi</label>
+                        <select class="form-control" id="prodi"  name="prodi">
+                          <option value="">Pilih Prodi</option>
+                            <?php foreach($jurusan as $jrs):  ?>
+                              <option value="<?= $jrs->id  ?>"> <?= $jrs->jurusan ?></option>
+                            <?php endforeach ?> 
+                        </select>
+                      </div>
+
+                      <div class="form-group col-lg-3">
                         <label>Kode Soal</label>
                         <input type="text" class="form-control" id="kode_soal" name="kode_soal" placeholder="masukan kode soal">
                       </div>

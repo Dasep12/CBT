@@ -6,7 +6,7 @@
                    <div class="card-body">  
                       <table id="nilai" class="table">
                         <thead>
-                          <tr>
+                          <tr class="tr">
                             <th>No</th>
                             <th>Nama</th>
                             <th>NISN</th>
@@ -20,13 +20,13 @@
                         </thead>
                         <tbody>
                           <?php $no = 1 ; foreach($daftar_siswa_ujian as $siswa) : ?>
-                            <tr>
+                            <tr class="tr">
                               <td><?= $no++; ?></td>
-                              <td><?= $siswa->nama; ?></td>
+                              <td><?= $siswa->nama  ?></td>
                               <td><?= $siswa->nisn; ?></td>
                               <td><?= $siswa->kelas; ?></td>
                               <td><?= $siswa->prodi; ?></td>
-                              <td><a href="javascript:;" data-nisn="<?= $siswa->nisn ?>" data-ujian="<?= $ujian ?>" data-mapel="<?= $mapel ?>" data-prodi="<?= $prodi ?>" data-kelas = "<?= $kelas ?>" data-toggle="modal" data-target="#lihat_transaksi" class="btn btn-info btn-xs">Lihat </a></td>
+                              <td><a href="javascript:;" data-kode_soal = "<?= $kode_soal ?>" data-nisn="<?= $siswa->nisn ?>" data-ujian="<?= $ujian ?>" data-mapel="<?= $mapel ?>" data-prodi="<?= $prodi ?>" data-kelas = "<?= $kelas ?>" data-toggle="modal" data-target="#lihat_transaksi" class="btn btn-info btn-xs">Lihat </a></td>
                               <td>
                                 <?php 
                                 $benar = 0 ;
@@ -36,7 +36,8 @@
                                     'nisn'  => $siswa->nisn ,
                                     'kelas' => $kelas ,
                                     'prodi' => $prodi ,
-                                    'mata_pelajaran'  => $mapel 
+                                    'mata_pelajaran'  => $mapel ,
+                                    'kode_soal'   => $kode_soal 
                                   );
                                   $jawaban = $this->db->get_where("jawaban",$where)->result();
                                   foreach($jawaban as $jawab) {
@@ -47,6 +48,7 @@
                                         'jawaban'         => $jawab->jawaban ,
                                         'mata_pelajaran'  => $mapel ,
                                         'kelas'           => $jawab->kelas ,
+                                        'kode_soal'   => $kode_soal 
                                       );
                                       $cekjawaban = $this->db->get_where("bank_soal",$where)->num_rows();
                                       if($cekjawaban){
@@ -116,9 +118,10 @@
         var mapel = div.data("mapel");
         var kelas = div.data("kelas");
         var prodi = div.data("prodi");
+        var kode_soal = div.data("kode_soal");
           $.ajax({
             url : "<?= base_url("guru/Nilai_ujian/lihat_jawaban") ?>" ,
-            data :"nisn="+ id +"&ujian="+ ujian+ "&mapel="+ mapel + "&prodi="+ prodi + "&kelas="+ kelas  ,
+            data :"nisn="+ id +"&ujian="+ ujian+ "&mapel="+ mapel + "&prodi="+ prodi + "&kelas="+ kelas + "&kode_soal=" + kode_soal  ,
             method : "GET",
             success : function(response){
               document.getElementById('no_inv').innerHTML = id ;
@@ -156,8 +159,8 @@
 
 function exportTableToCSV(filename) {
     var csv = [];
-  var rows = document.querySelectorAll("table tr");
-  
+  var rows = document.querySelectorAll(".table .tr");
+  console.log(rows);
     for (var i = 0; i < rows.length; i++) {
     var row = [], 
         cols = rows[i].querySelectorAll("td, th");

@@ -70,10 +70,10 @@
 
                       <div class="form-group col-md-3">
                         <select class="form-control" id="prodi" name="prodi">
-                          <option>Pilih Prodi</option>
-                          <option>TKJ</option>
-                          <option>AKP</option>
-                          <option>TKR</option>
+                          <option value="">Pilih Prodi / Jurusan</option>
+                          <?php foreach($jurusan->result() as $jrs) : ?>
+                            <option><?= $jrs->jurusan ?></option>
+                            <?php endforeach ?>
                         </select>
                       </div>
                        <div class="form-group col-md-3">
@@ -82,6 +82,11 @@
                           <?php foreach($mata_pelajaran->result() as $mapel ) : ?>
                             <option value="<?= $mapel->mata_pelajaran ?>"><?= $mapel->mata_pelajaran . " - " .  $mapel->kode_mapel?></option>
                           <?php endforeach ?>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-md-3">
+                        <input type="text" name="kode_soal" id="kode_soal" class="form-control" placeholder="masukan kode soal">
                         </select>
                       </div>
 
@@ -149,7 +154,10 @@
             } else if(document.getElementById("mata_pelajaran").value == ""){
               toastr.info("mata pelajaran belum di pilih");
               $("#mata_pelajaran").focus();
-            }else {
+            }else if(document.getElementById("kode_soal").value == ""){
+              toastr.info("kode soal  belum di pilih");
+              $("#kode_soal").focus();
+            }else{
                 $.ajax({
                   url : "<?= base_url('guru/Nilai_ujian/view') ?>",
                   method  : "POST" ,

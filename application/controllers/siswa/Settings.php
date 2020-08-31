@@ -21,19 +21,45 @@
  	public function update()
  	{
  		$where = array("nisn" =>  $this->session->userdata("nisn") );
- 		$data = array(
- 			'nama'			=> $this->input->post("nama"),
- 			'tempat_lahir'	=> $this->input->post("tempat_lahir"),
- 			'tgl_lahir'		=> $this->input->post("tgl_lahir"),
- 			'alamat'		=> $this->input->post("alamat"),
- 		);
+ 		$password  = $this->input->post("password");
 
- 		$update = $this->m_siswa->update($data,"siswa",$where);
- 			if($update){
- 				echo "Sukses";
- 			}else {
- 				echo "Gagal";
- 			}
+ 		if(empty($password)){
+		 		$data = array(
+		 			'nama'			=> $this->input->post("nama"),
+		 			'tempat_lahir'	=> $this->input->post("tempat_lahir"),
+		 			'tgl_lahir'		=> $this->input->post("tgl_lahir"),
+		 			'alamat'		=> $this->input->post("alamat"),
+		 		);
+
+		 		$update = $this->m_siswa->update($data,"siswa",$where);
+		 			if($update){
+		 				echo "Sukses";
+		 			}else {
+		 				echo "Gagal";
+		 			}
+
+		 }else{
+		 	$data = array(
+		 			'nama'			=> $this->input->post("nama"),
+		 			'tempat_lahir'	=> $this->input->post("tempat_lahir"),
+		 			'tgl_lahir'		=> $this->input->post("tgl_lahir"),
+		 			'alamat'		=> $this->input->post("alamat"),
+		 		);
+
+		 	//update data password 
+		 	$data2 = array(
+		 		"password"  => $password
+		 	);
+
+		 		$update = $this->m_siswa->update($data,"siswa",$where);
+		 		$updatePass = $this->m_siswa->update($data2,"akun",$where);
+		 			if($update){
+		 				echo "Sukses";
+		 			}else {
+		 				echo "Gagal";
+		 			}
+		 }
+
  	}
 
 

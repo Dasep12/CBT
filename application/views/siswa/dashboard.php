@@ -7,8 +7,11 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="<?= base_url("assets") ?>/dist/profile/avatar4.png">
+                  <?php if(empty($profile->photo)) { ?> 
+                  <img class="profile-user-img img-fluid img-circle"   src="<?= base_url("assets/dist/img/siswa.png") ?>">
+                  <?php }else { ?>
+                  <img class="profile-user-img img-fluid img-circle"   src="<?= base_url("assets/poto_siswa/" . $profile->photo) ?>">
+                  <?php } ?>
                 </div>
 
                 <h3 class="profile-username text-center"><?= $profile->nama ?></h3>
@@ -68,11 +71,11 @@
                       </p>
                       <p>
                         <a href="<?= base_url('siswa/Lihat_tugas/view/'. $tugas->id) ?>" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Lihat Tugas</a>
-                        <span class="float-right">
+                       <!--  <span class="float-right">
                           <a href="#" class="link-black text-sm">
                             <i class="far fa-comments mr-1"></i> Comments (5)
                           </a>
-                        </span>
+                        </span> -->
                       </p>
                       <hr>
                     <?php endforeach ?>

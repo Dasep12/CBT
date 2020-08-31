@@ -131,7 +131,7 @@
                with font-awesome or any other icon font library -->
         <li class="nav-item ">
             <a href="<?= base_url("admin/Dashboard") ?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
               </p>
@@ -342,12 +342,15 @@
   </div>
   <!-- /.content-wrapper -->
 
+ <!-- Main Footer -->
   <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.6-pre
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+    <?= $_SERVER['REMOTE_ADDR'] ?>
     </div>
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
+    <!-- Default to the left -->
+    <small>Copyright &copy 2020 </small>
+    <small class="small">Depeloved by Dasep Depiyawan</small> 
   </footer>
 
   <!-- Control Sidebar -->

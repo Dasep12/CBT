@@ -6,8 +6,11 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
-                       src="<?= base_url("assets") ?>/dist/profile/avatar4.png">
+                 <?php if(empty($profile->photo)) { ?> 
+                  <img class="profile-user-img img-fluid img-circle"   src="<?= base_url("assets/dist/img/siswa.png") ?>">
+                  <?php }else { ?>
+                  <img class="profile-user-img img-fluid img-circle"   src="<?= base_url("assets/poto_siswa/" . $profile->photo) ?>">
+                  <?php } ?>
                 </div>
 
                 <h3 class="profile-username text-center"><?= $profile->nama ?></h3>
@@ -89,7 +92,7 @@
                       <div class="form-group row">
                         <label for="inputName2" class="col-sm-2 col-form-label">New Password</label>
                         <div class="col-sm-10">
-                          <input type="text" name="password" class="form-control" id="inputName2" placeholder="New Password">
+                          <input type="password" name="password" class="form-control" id="inputName2" placeholder="New Password">
                           <label class="small text-danger">*isi jika ingin melakukan pergantian password*</label>
                         </div>
                       </div>
@@ -156,6 +159,9 @@
                 },
                 success : function(response){
                   toastr.success("Berhasil memperbarui data diri");
+                  setTimeout(function(){
+                    window.location.href = "<?= base_url('siswa/Settings') ?>"
+                  },1000)
                 }
               })
             }

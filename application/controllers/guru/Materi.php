@@ -11,8 +11,8 @@ date_default_timezone_set('Asia/Jakarta');
  		$data['profile'] = $this->m_guru->cariData(array("nipn" => $this->session->userdata("nipn")),"guru")->row();
  		$where = array("kode_guru"	=> $this->session->userdata("nipn"));
  		$data['mapel']  = $this->m_guru->cariData($where,"materi")->result();
- 		 $where = array("pengajar"	=> $this->session->userdata("nipn"));
- 		$data['mapel2']  = $this->m_guru->cariData($where,"mata_pelajaran")->result();
+ 		$where2 = array("kode_pengajar"	=> $this->session->userdata("nipn"));
+ 		$data['mapel2']  = $this->m_guru->cariData($where2,"mata_pelajaran")->result();
  		$this->template->load("template/template_guru","guru/materi",$data);
  	}
 
