@@ -32,6 +32,7 @@
 
 	<div class="col-md-6">
 		<label>Komentar Tugas / Keterangan tugas</label>
+		<form action="" method="post" id="updateLampiran">
 		<textarea id="keterangan" name="jawaban" class="form-control mb-2"><?= $tugas->jawaban ?></textarea>
 		<label>Lampiran Jawaban</label><br>
 		<?php if(!empty($tugas->file_jawaban)) :  ?>
@@ -58,7 +59,7 @@
 
 	<!-- jika lampiran masih kosong maka munculkan form tambah lampiran -->
 	<?php if(empty($tugas->file_jawaban) || $tugas->file_jawaban == "" ){ ?>
-		<form action="" method="post" id="updateLampiran">
+		
 			<input type="hidden" name="kode_tugas" value="<?= $tugas->kode_tugas ?>">
 			<input type="file" name="file_jawaban" class="small" id="file_jawaban" ><br>
 			<button type="submit" class="btn btn-sm btn-info mt-1">Tambah Lampiran </button>

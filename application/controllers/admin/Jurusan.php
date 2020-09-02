@@ -6,6 +6,14 @@
  */
 class Jurusan extends CI_Controller
 {
+	public  function __construct()
+ 	{
+ 		parent::__construct();
+ 		if(empty($this->session->userdata("role_id")) || $this->session->userdata("role_id") != 1 ) {
+ 			$this->session->set_flashdata("error","Gagal");
+ 			redirect("Login");
+ 		}
+ 	}
 	
 	public function index()
  	{

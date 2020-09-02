@@ -6,6 +6,22 @@
   */
  class Login extends CI_Controller
  {
+
+ 	public  function __construct()
+ 	{
+ 		parent::__construct();
+ 		if(!empty($this->session->userdata("role_id")) && $this->session->userdata("role_id") == 1 ) {
+ 			$this->session->set_flashdata("error","Gagal");
+ 			redirect("admin/Dashboard");
+ 		}elseif(!empty($this->session->userdata("role_id")) && $this->session->userdata("role_id") == 2  ) {
+ 			$this->session->set_flashdata("error","Gagal");
+ 			redirect("guru/Dashboard");
+ 		}elseif(!empty($this->session->userdata("role_id")) && $this->session->userdata("role_id") == 3  ) {
+ 			$this->session->set_flashdata("error","Gagal");
+ 			redirect("siswa/Dashboard");
+ 		}
+ 	}
+
  	public function index()
  	{
  		$this->load->view("login");
@@ -33,9 +49,11 @@
  						$this->session->set_userdata("nama",$auth->nama);
  						$this->session->set_userdata("kelas",$auth->kelas);
  						$this->session->set_userdata("nisn",$auth->nisn);
+ 						$this->session->set_userdata("role_id",$role->role_id);
  						$this->session->set_userdata("prodi",$auth->prodi);
  					}else {
  						$auth = $ceknipn->row();
+ 						$this->session->set_userdata("role_id",$role->role_id);
  						$this->session->set_userdata("nipn",$auth->nipn);
  						$this->session->set_userdata("nama",$auth->nama);
  						$this->session->set_userdata("status",$auth->status);

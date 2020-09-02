@@ -1,10 +1,10 @@
-
+<?php $title = $this->db->get("judul")->row() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sistem Informasi DWI PUTRA</title>
+  <title>Sistem Informasi <?= $title->nama_sekolah ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -39,7 +39,7 @@
 <div class="Loading"></div>
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?= base_url() ?>"><b>Sisfo DWIPA</a>
+    <a href="<?= base_url() ?>"><b>E-Learning <?= $title->nama_sekolah ?></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -75,8 +75,13 @@
           <div class="col-12">
             <button type="submit" class="btn btn-primary btn-block">Sign In</button>
           </div>
-          <!-- /.col -->
         </div>
+          <!-- /.col -->
+          <?php if($this->session->flashdata("error")){ ?>
+          <div class="col-md-12 mt-2 alert alert-danger">
+            <center>Anda Harus Login Dahulu ! ! !</center>
+          </div>
+          <?php } ?>
       </form>
     </div>
     <!-- /.login-card-body -->

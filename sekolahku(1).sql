@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Agu 2020 pada 15.16
+-- Waktu pembuatan: 02 Sep 2020 pada 12.16
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -40,10 +40,9 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id`, `username`, `nisn`, `password`, `role_id`) VALUES
-(20, 'ADMIN', '807', 'admin', 1),
+(20, 'ADMIN', '807', '123', 1),
 (22, 'Dasep Depiyawan', '1910001', '321', 3),
-(23, 'Lisnawati', '2015', '9090', 2),
-(24, 'ahmad', '1945', '123', 1);
+(23, 'Lisnawati', '2015', '9090', 2);
 
 -- --------------------------------------------------------
 
@@ -152,7 +151,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id`, `nipn`, `nama`, `status`, `gender`, `tempat_lahir`, `tgl_lahir`, `alamat`, `email`, `gelar`, `no_hp`, `photo`) VALUES
-(9, 807, 'ADMIN', 'Staf', 'Laki-Laki', NULL, NULL, NULL, 'dwiputra@gmail.com', NULL, '081809064032', 'admin2.png'),
+(9, 807, 'ADMIN', 'Staf', 'Laki-Laki', NULL, NULL, NULL, 'dwiputra@gmail.com', NULL, '081809064032', 'guru.jpg'),
 (11, 2015, 'Lisnawati', 'Pengajar', 'Perempuan', 'Jakarta', '1980-11-26', 'Jakarta Utara', 'lisna@gmail.com', 'S,Kom M.Hum', '081809064000', 'lisnawattt_16_20200801_170640_0.jpg'),
 (12, 1945, 'ahmad', 'Staf', 'Laki-Laki', NULL, NULL, NULL, NULL, NULL, NULL, '6.jpg');
 
@@ -166,17 +165,16 @@ CREATE TABLE `jadwal_ujian` (
   `id` int(11) NOT NULL,
   `kode_soal` varchar(100) NOT NULL,
   `mata_pelajaran` varchar(255) DEFAULT NULL,
+  `kode_mapel` varchar(255) DEFAULT NULL,
   `hari` date DEFAULT NULL,
-  `jam` varchar(2) DEFAULT NULL
+  `jam_mulai` varchar(100) DEFAULT NULL,
+  `jam_selesai` varchar(100) DEFAULT NULL,
+  `kelas` varchar(100) DEFAULT NULL,
+  `kode_prodi` varchar(100) DEFAULT NULL,
+  `prodi` varchar(100) DEFAULT NULL,
+  `guru` varchar(100) DEFAULT NULL,
+  `kode_guru` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `jadwal_ujian`
---
-
-INSERT INTO `jadwal_ujian` (`id`, `kode_soal`, `mata_pelajaran`, `hari`, `jam`) VALUES
-(4, 'A001', 'Sejarah', '2020-08-31', '17'),
-(5, 'A002', 'Sejarah', '2020-08-31', NULL);
 
 -- --------------------------------------------------------
 
@@ -222,6 +220,24 @@ INSERT INTO `jawaban` (`id`, `id_soal`, `bentuk_ujian`, `nama`, `nisn`, `jawaban
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `judul`
+--
+
+CREATE TABLE `judul` (
+  `id` int(11) NOT NULL,
+  `nama_sekolah` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `judul`
+--
+
+INSERT INTO `judul` (`id`, `nama_sekolah`) VALUES
+(1, 'SMKN 45');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `jurusan`
 --
 
@@ -254,7 +270,7 @@ CREATE TABLE `kumpul_tugas` (
   `file_jawaban` varchar(255) DEFAULT NULL,
   `tgl_diserahkan` date DEFAULT NULL,
   `jam_diserahkan` varchar(60) DEFAULT NULL,
-  `nilai` int(3) DEFAULT NULL
+  `nilai` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -262,7 +278,8 @@ CREATE TABLE `kumpul_tugas` (
 --
 
 INSERT INTO `kumpul_tugas` (`id`, `kode_tugas`, `nama_siswa`, `nisn`, `jawaban`, `file_jawaban`, `tgl_diserahkan`, `jam_diserahkan`, `nilai`) VALUES
-(12, 'jjVQLdiH', 'Dasep Depiyawan', '1910001', 'Ok bu sudah di kerjakan', '4j.jpg', '2020-08-30', '19:10:25', 90);
+(12, 'jjVQLdiH', 'Dasep Depiyawan', '1910001', 'Ok bu sudah di kerjakan', '4j.jpg', '2020-08-30', '19:10:25', 90),
+(13, '8dzUYNO9', 'Dasep Depiyawan', '1910001', 'Ok', 'guru2.png', '2020-09-01', '15:11:38', 34);
 
 -- --------------------------------------------------------
 
@@ -325,15 +342,16 @@ CREATE TABLE `siswa` (
   `tgl_lahir` varchar(60) DEFAULT NULL,
   `tempat_lahir` varchar(255) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `photo` varchar(255) DEFAULT NULL,
+  `gender` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nisn`, `nama`, `kelas`, `kode_prodi`, `prodi`, `tgl_lahir`, `tempat_lahir`, `alamat`, `photo`) VALUES
-(26, 1910001, 'Dasep Depiyawan', 'X', 'A1', 'IPA', '1999-04-13', 'Bandung', 'Kp Japat  Jl Lodal Dalam II C', 'siswa.jpg');
+INSERT INTO `siswa` (`id`, `nisn`, `nama`, `kelas`, `kode_prodi`, `prodi`, `tgl_lahir`, `tempat_lahir`, `alamat`, `photo`, `gender`) VALUES
+(26, 1910001, 'Dasep Depiyawan', 'X', 'A1', 'IPA', '1999-04-13', 'Bandung', 'Kp Japat  Jl Lodal Dalam II C', 'siswa.jpg', 'Laki-Laki');
 
 -- --------------------------------------------------------
 
@@ -362,7 +380,7 @@ CREATE TABLE `tugas` (
 --
 
 INSERT INTO `tugas` (`id`, `kode_guru`, `nama_guru`, `mata_pelajaran`, `kode_mapel`, `kelas`, `prodi`, `tanggal`, `jam`, `file_tugas`, `judul_tugas`, `keterangan`, `kode_tugas`) VALUES
-(30, '2015', 'Lisnawati', 'Sejarah', 'SJ12', 'X', 'IPA', '2020-08-30', '19:03:44', 'Tugas_10_19101051.docx', 'Tugas 1', 'kerjakan dan jawaban upload dengan tulis tangan', 'jjVQLdiH');
+(33, '2015', 'Lisnawati', 'Sejarah', 'SJ12', 'X', 'IPA', '2020-09-01', '15:11:10', 'Sistem_basisdata_rabu_(1)1.docx', 'Tugas 1', 'Kerjakan', '8dzUYNO9');
 
 -- --------------------------------------------------------
 
@@ -462,6 +480,12 @@ ALTER TABLE `jawaban`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `judul`
+--
+ALTER TABLE `judul`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
@@ -529,13 +553,13 @@ ALTER TABLE `bank_soal`
 -- AUTO_INCREMENT untuk tabel `daftar_tugas`
 --
 ALTER TABLE `daftar_tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `file_materi`
 --
 ALTER TABLE `file_materi`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT untuk tabel `guru`
@@ -547,13 +571,19 @@ ALTER TABLE `guru`
 -- AUTO_INCREMENT untuk tabel `jadwal_ujian`
 --
 ALTER TABLE `jadwal_ujian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `jawaban`
 --
 ALTER TABLE `jawaban`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+
+--
+-- AUTO_INCREMENT untuk tabel `judul`
+--
+ALTER TABLE `judul`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `jurusan`
@@ -565,7 +595,7 @@ ALTER TABLE `jurusan`
 -- AUTO_INCREMENT untuk tabel `kumpul_tugas`
 --
 ALTER TABLE `kumpul_tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `mata_pelajaran`
@@ -577,7 +607,7 @@ ALTER TABLE `mata_pelajaran`
 -- AUTO_INCREMENT untuk tabel `materi`
 --
 ALTER TABLE `materi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`
@@ -589,7 +619,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT untuk tabel `uas`

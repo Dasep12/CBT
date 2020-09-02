@@ -6,6 +6,16 @@
   */
  class Selesai extends CI_Controller
  {
+ 	public  function __construct()
+ 	{
+ 		parent::__construct();
+ 		if(empty($this->session->userdata("role_id")) || $this->session->userdata("role_id") != 3 ) {
+ 			$this->session->set_flashdata("error","Gagal");
+ 			redirect("Login");
+ 		}
+ 	}
+
+
  	public function index()
  	{
  		$where2 = array(
@@ -60,7 +70,7 @@
  		$kode = $this->input->post("kode_tugas");
  		$nisn = $this->session->userdata("nisn");
  		$fileLampiran = $_FILES['file_jawaban']['name'] ;
-
+ 		$jawaban = $this->input->post("jawaban");
  		$this->load->library("upload");
 			$config['upload_path']   = './assets/tugas/jawaban/';
 			$config['allowed_types']	= '*' ;
@@ -71,6 +81,7 @@
 					$file = $this->upload->data("file_name");
 					$data = array(
 						'file_jawaban'		=> $file,
+						"jawaban"			=> $jawaban 
 					);
 					$where = array(
 						"kode_tugas"  => $kode ,
