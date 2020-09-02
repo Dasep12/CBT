@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Sep 2020 pada 12.16
+-- Waktu pembuatan: 02 Sep 2020 pada 13.35
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -279,7 +279,7 @@ CREATE TABLE `kumpul_tugas` (
 
 INSERT INTO `kumpul_tugas` (`id`, `kode_tugas`, `nama_siswa`, `nisn`, `jawaban`, `file_jawaban`, `tgl_diserahkan`, `jam_diserahkan`, `nilai`) VALUES
 (12, 'jjVQLdiH', 'Dasep Depiyawan', '1910001', 'Ok bu sudah di kerjakan', '4j.jpg', '2020-08-30', '19:10:25', 90),
-(13, '8dzUYNO9', 'Dasep Depiyawan', '1910001', 'Ok', 'guru2.png', '2020-09-01', '15:11:38', 34);
+(13, '8dzUYNO9', 'Dasep Depiyawan', '1910001', 'Baik Pak Bu Sudah saya kirim dan kerjakan', 'satudin.png', '2020-09-01', '15:11:38', 0);
 
 -- --------------------------------------------------------
 
