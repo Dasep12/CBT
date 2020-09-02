@@ -34,4 +34,55 @@
 
  			$this->load->view("siswa/modal_tugas_selesai",$data);
  	}
+
+ 	//hapus lampiran
+ 	public function hapusLampiran()
+ 	{
+ 		$where = array(
+ 			"nisn"			 =>	$this->session->userdata("nisn") ,
+ 			"kode_tugas"	 => $this->input->post("kode")
+ 		);
+ 		$dataFile = $this->m_siswa->getSiswa($where,"kumpul_tugas")->row();
+ 		$target = "assets/tugas/jawaban/" . $dataFile->file_jawaban  ;
+ 		if(unlink($target)){
+	 		$data = array("file_jawaban" => "" , "nilai" => "");
+	 		$update = $this->m_siswa->update($data,"kumpul_tugas",$where);
+	 		if($update){
+	 			echo "Update";
+	 		}
+ 		}
+ 	}
+
+
+ 	//perbarui lampiran
+ 	public function updateLampiran()
+ 	{
+ 		$kode = $this->input->post("kode_tugas");
+ 		$nisn = $this->session->userdata("nisn");
+ 		$fileLampiran = $_FILES['file_jawaban']['name'] ;
+
+ 		$this->load->library("upload");
+			$config['upload_path']   = './assets/tugas/jawaban/';
+			$config['allowed_types']	= '*' ;
+			$this->upload->initialize($config);
+				if(!$this->upload->do_upload("file_jawaban")){
+					echo "gagal";
+				}else {
+					$file = $this->upload->data("file_name");
+					$data = array(
+						'file_jawaban'		=> $file,
+					);
+					$where = array(
+						"kode_tugas"  => $kode ,
+						"nisn"			=> $nisn 
+					);
+					
+					//kumpulkan tugas dari siswa kedalam tablel kumpul tugas
+					$update = $this->m_siswa->update($data,"kumpul_tugas",$where);
+				 		if($update){
+				 			echo "Update";
+				 		}
+				}
+
+ 	}
  } 

@@ -31,16 +31,16 @@
  					$hari	 = "Senin" ;
  					break;
  				case 'Tue':
- 					$data = "Selasa" ;
+ 					$hari = "Selasa" ;
  					break;
  				case 'Wed':
- 					$data = "Rabu" ;
+ 					$hari = "Rabu" ;
  					break;
  				case 'Thu':
- 					$data = "Kamis" ;
+ 					$hari = "Kamis" ;
  					break;
  				case 'Fri':
- 					$data = "Jum'at" ;
+ 					$hari = "Jum'at" ;
  					break;
  				case 'Sat':
  					 $hari = "Sabtu" ;

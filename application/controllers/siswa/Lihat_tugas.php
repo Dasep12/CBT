@@ -38,6 +38,7 @@ class Lihat_tugas extends CI_Controller
 				'jam'			=> date('H:i:s'),
 				'nama_siswa'	=> $this->session->userdata('nama'),
 				'nisn'			=> $this->session->userdata('nisn'),
+				"nilai"			=> 0 
 			);
 
 			$input = $this->m_siswa->input($data,"kumpul_tugas");

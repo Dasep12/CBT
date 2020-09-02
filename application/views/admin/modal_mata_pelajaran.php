@@ -42,7 +42,7 @@
 	</div>
 
 
-	<button class="btn btn-danger btn-sm">Update Jurusan</button>
+	<button class="btn btn-danger btn-sm">Update Mata Pelajaran</button>
 </form> 
 
 

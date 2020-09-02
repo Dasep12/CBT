@@ -91,7 +91,7 @@
             if(document.getElementById('username').value == ""){
               swal({
                 icon : "error",
-                title : "mata pelajaran masih kosong" ,
+                title : "username masih kosong" ,
                 dangerMode : [true,"Ok"]
               }).then(function(){
                 $("#username").focus();

@@ -4,17 +4,30 @@
  /**
   * 
   */
- class Dashboard extends CI_Controller
+ class Setnama extends CI_Controller
  {
+ 	
  	public function index()
  	{
  		$data['hari'] = $this->hari();
  		$data['url']  = $this->uri->segment(2); 
- 		$data['jmlahsiswa'] = $this->m_admin->getData("siswa")->num_rows();
- 		$data['pengajar'] = $this->m_admin->getData("guru")->num_rows();
- 		$data['siswaPria'] = $this->m_admin->cari(array("gender" => "Laki-Laki"),"siswa")->num_rows();
- 		$data['siswaPerempuan'] = $this->m_admin->cari(array("gender" => "Perempuan"),"siswa")->num_rows();
- 		$this->template->load("template/template_admin","admin/dashboard",$data);
+ 		$data['sekolah']  = $this->m_admin->getData("judul")->row();
+  		$this->template->load("template/template_admin","admin/setnama",$data);
+ 	}
+
+
+ 	public function update()
+ 	{
+ 		$data = array(
+		 			"nama_sekolah" 		=> $this->input->post("nama")
+		 		);
+ 		$id = $this->input->post("id");
+ 		$update = $this->m_admin->update($data,"judul",array("id" => $id));
+ 					if($update){
+ 						echo "Berhasil update data";
+ 					}else {
+ 						echo "Gagal";
+ 					}
  	}
 
  	public function hari()

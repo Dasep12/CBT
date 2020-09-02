@@ -1,10 +1,11 @@
-<?php date_default_timezone_set('Asia/Jakarta') ?>
+<?php date_default_timezone_set('Asia/Jakarta') ;
+$title = $this->db->get("judul")->row()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin E-Learning</title>
+  <title>Admin E-Learning <?= $title->nama_sekolah ?></title>
    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -33,7 +34,12 @@
   <link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/toastr/toastr.min.css">
-
+   <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="<?= base_url('assets') ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <script src="<?= base_url('assets') ?>/plugins/jquery/jquery.min.js"></script>
   <script src="<?= base_url('assets') ?>/pagination/smpPagination.js"></script>
   <script src="<?= base_url('assets') ?>/sweetalert/sweetalert.min.js"></script>
@@ -109,7 +115,7 @@
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin E-Learning</span>
+      <span class="brand-text font-weight-light"><?= $title->nama_sekolah ?></span>
     </a>
 
     <!-- Sidebar -->
@@ -241,7 +247,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Settings
+                Settings Admin
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -267,35 +273,44 @@
               
             </ul>
           </li>
-          <!-- <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview <?php if($url == "SettJadwal"  || $url == "Jadwal_ujian"){ echo  "menu-open"; } ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Tables
+                Jadwal Ujian
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="../tables/simple.html" class="nav-link">
+                <a href="<?= base_url('admin/Jadwal_ujian') ?>" class="nav-link <?php if($url == "Jadwal_ujian"){ echo "active" ; } ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Setting Jadwal</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="../tables/data.html" class="nav-link">
+                <a href="<?= base_url('admin/SettJadwal') ?>" class="nav-link <?php if($url == "SettJadwal"){ echo "active" ; } ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Tambah Jadwal Ujian</p>
                 </a>
               </li>
-              <li class="nav-item">
+             <!--  <li class="nav-item">
                 <a href="../tables/jsgrid.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>jsGrid</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
-          </li> -->
+          </li>
+
+            <li class="nav-item ">
+            <a href="<?= base_url("admin/Setnama") ?>" class="nav-link <?php if($url == "Setnama"){ echo "active" ; } ?>">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+               Setting Nama Sekolah
+              </p>
+            </a>
+          </li>
 
            <li class="nav-item ">
             <a href="<?= base_url("Logout") ?>" class="nav-link">
@@ -305,6 +320,7 @@
               </p>
             </a>
           </li>
+
           
          
         </ul>
@@ -360,7 +376,8 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<!-- ChartJS -->
+<script src="<?= base_url('assets') ?>plugins/chart.js/Chart.min.js"></script>
 <!-- file tempat ajax dilakukan -->
 <script src="<?= base_url('assets') ?>/js/ajax.js"></script>
 <!-- Bootstrap 4 -->
@@ -389,7 +406,8 @@
 <script src="<?= base_url('assets') ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?= base_url('assets') ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url('assets') ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="<?= base_url('assets') ?>/dist/js/pages/dashboard.js"></script>
 <script type="text/javascript">
 $(function(){
         //Date range picker
