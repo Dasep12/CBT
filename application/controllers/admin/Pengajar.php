@@ -99,7 +99,9 @@ class Pengajar extends CI_Controller
  	public function delete()
  	{
  		$id = $this->input->get("id");
+ 		$akun = $this->m_admin->cari(array("id" => $id) , "guru")->row();
  		$delete = $this->m_admin->delete( array("id" => $id  ) ,"guru");
+ 		$deleteAkun = $this->m_admin->delete( array("nisn" => $akun->nipn  ) ,"akun");
  			if($delete){
  				echo "Sukses";
  			}else {

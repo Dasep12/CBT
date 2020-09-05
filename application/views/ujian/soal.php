@@ -36,7 +36,18 @@
 			<tr>
 				<td>Waktu Ujian</td>
 				<td>:</td>
-				<td>90 menit</td>
+				<td><span id="waktuUJian"></span>
+						<script type="text/javascript">
+							const m = "<?= $timer->mulai ?> ";
+							const s  =  "<?= $timer->selesai ?> " ;
+							const mulai = m.split(":")[0] +  m.split(":")[1]  +  m.split(":")[2] ;
+							const selesai = s.split(":")[0] +  s.split(":")[1]  + s.split(":")[2];
+							const selisih = parseInt(selesai) - parseInt(mulai) ;
+							const jam = selisih *(1000 * 60 * 60) /  60 * 60  ;
+							document.getElementById("waktuUJian").innerHTML = jam ;
+						</script>
+
+				</td>
 			</tr>
 			<tr>
 				<td>Timer</td>
@@ -115,8 +126,9 @@
 				document.getElementById("countdown").innerHTML = jam  + ":"+ menit + ":" + detik ;
 		}else {
 				document.getElementById("countdown").innerHTML = "waktu habis" ;
-				$("input[type=radio]").attr("disabled",true);
+			//	$("input[type=radio]").attr("disabled",true);
 		}
 	},1000);
+	
 		$(".form-group").smpPagination(2) ;	
 </script>

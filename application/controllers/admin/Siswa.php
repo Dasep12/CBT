@@ -44,7 +44,9 @@ header("Access-Control-Allow-Methods: GET, OPTIONS");
  	public function delete()
  	{
  		$id = $this->input->get("id");
+ 		$akun = $this->m_admin->cari(array("id" => $id) , "siswa")->row();
  		$delete = $this->m_admin->delete( array("id" => $id  ) ,"siswa");
+ 		$deleteAkun = $this->m_admin->delete( array("nisn" => $akun->nisn  ) ,"akun");
  			if($delete){
  				echo "Sukses";
  			}else {

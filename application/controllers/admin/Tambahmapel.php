@@ -20,7 +20,7 @@
  	{
  		$data['hari'] = $this->hari();
  		$data['url']  = $this->uri->segment(2); 
- 		$data['pengajar'] = $this->m_admin->getData("guru")->result(); 
+ 		$data['pengajar'] = $this->m_admin->cari(array("status" => "pengajar"),"guru")->result(); 
  		$data['jurusan'] = $this->m_admin->getData("jurusan")->result(); 
  		$this->template->load("template/template_admin","admin/tambahmapel",$data);
  	}
