@@ -67,7 +67,7 @@ $title = $this->db->get("judul")->row()?>
 <div class="Loading"></div>
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-black">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -108,9 +108,9 @@ $title = $this->db->get("judul")->row()?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light sidebar-nav-small-text elevation-4">
+  <aside class="main-sidebar  sidebar-dark-primary sidebar-nav-small-text elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= base_url('assets') ?>/index3.html" class="brand-link">
+    <a href="<?= base_url() ?>" class="brand-link">
       <img src="<?= base_url('assets') ?>/dist/img/AdminLTELogo.png"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
@@ -408,6 +408,10 @@ $title = $this->db->get("judul")->row()?>
 <script src="<?= base_url('assets') ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?= base_url('assets') ?>/dist/js/pages/dashboard.js"></script>
+<!-- Sparkline -->
+<script src="<?= base_url('assets') ?>/plugins/sparklines/sparkline.js"></script>
+<!-- daterangepicker -->
+<script src="<?= base_url('assets') ?>/plugins/moment/moment.min.js"></script>
 <script type="text/javascript">
 $(function(){
         //Date range picker

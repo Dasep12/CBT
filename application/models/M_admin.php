@@ -18,6 +18,12 @@ class M_admin extends CI_Model
 		return $this->db->insert($table,$data);
 	}
 
+	//input data dengan metode array()
+	public function inputArray($data,$table)
+	{
+		return $this->db->insert_batch($data,$table);
+	}
+
 	//cari data berdasarkan inputan 
 	public function cari($where,$table)
 	{
@@ -37,5 +43,26 @@ class M_admin extends CI_Model
 		$this->db->where($where);
 		return $this->db->delete($table);
 	}
+
+	//upload data siswa
+	public function uploadfile($filename)
+ 	{
+ 		$this->load->library('upload');
+ 		$config['upload_path']		= './assets/upload/';
+ 		$config['allowed_types']	='xlsx';
+ 		$config['max_size']			='12048';
+ 		$config['overwrite']		=true ;
+ 		$config['file_name']		= $filename;
+
+ 		$this->upload->initialize($config);
+ 			if ($this->upload->do_upload('file')) {
+ 				//jik berhasil
+ 				$return = array('result' => 'success' , 'file'	=> $this->upload->data() , 'error' => '');
+ 				return $return;
+ 			}else{
+ 				$return = array('result' => 'gagal' , 'file' => '' , 'error' => $this->upload->display_errors());
+ 				return $return;
+ 			}
+ 	}
 	
 }

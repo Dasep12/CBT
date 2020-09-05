@@ -22,7 +22,7 @@
  		$data['hari'] = $this->hari();
  		$data['url']  = $this->uri->segment(2); 
  		$data['jmlahsiswa'] = $this->m_admin->getData("siswa")->num_rows();
- 		$data['pengajar'] = $this->m_admin->getData("guru")->num_rows();
+ 		$data['pengajar'] = $this->m_admin->cari(array("status" => "pengajar"),"guru")->num_rows();
  		$data['siswaPria'] = $this->m_admin->cari(array("gender" => "Laki-Laki"),"siswa")->num_rows();
  		$data['siswaPerempuan'] = $this->m_admin->cari(array("gender" => "Perempuan"),"siswa")->num_rows();
  		$this->template->load("template/template_admin","admin/dashboard",$data);

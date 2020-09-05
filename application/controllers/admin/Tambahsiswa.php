@@ -27,6 +27,7 @@
  	public function input()
  	{
  		$file = $_FILES['photo']['name'];
+ 		$prodi  = $this->m_admin->cari(array("kode_jurusan" =>  $this->input->post("prodi")) , "jurusan")->row();
  		$ceknisn = $this->m_admin->cari(array("nisn" => $this->input->post("nisn")),"siswa")->num_rows() ;
  		if(empty($file)){
  			if($ceknisn > 0 ){
@@ -39,11 +40,15 @@
 		 		$data = array(
 		 			"nama"			=> $this->input->post("nama"),
 		 			"nisn"			=> $this->input->post("nisn"),
-		 			"prodi"			=> $this->input->post("prodi"),
+		 			"prodi"			=> $prodi->jurusan,
+				 	"kode_prodi"	=> $prodi->kode_jurusan,
 		 			"kelas"			=> $this->input->post("kelas"),
 		 			"tgl_lahir"		=> $this->input->post("tgl_lahir"),
 		 			"tempat_lahir"	=> $this->input->post("tempat_lahir"),
 		 			"alamat"		=> $this->input->post("alamat"),
+		 			"tahun_ajaran"	=> $this->input->post("tahun_ajaran"),
+		 			"angkatan"		=> $this->input->post("angkatan"),
+		 			"gender"		=> $this->input->post("gender"),
 		 		);
 
 		 		//simpan data untuk akun siswa
@@ -83,11 +88,15 @@
 	 					$data = array(
 				 			"nama"			=> $this->input->post("nama"),
 				 			"nisn"			=> $this->input->post("nisn"),
-				 			"prodi"			=> $this->input->post("prodi"),
+				 			"prodi"			=> $prodi->jurusan,
+				 			"kode_prodi"	=> $prodi->kode_jurusan,
 				 			"kelas"			=> $this->input->post("kelas"),
 				 			"tgl_lahir"		=> $this->input->post("tgl_lahir"),
 				 			"tempat_lahir"	=> $this->input->post("tempat_lahir"),
 				 			"alamat"		=> $this->input->post("alamat"),
+				 			"tahun_ajaran"	=> $this->input->post("tahun_ajaran"),
+		 					"angkatan"		=> $this->input->post("angkatan"),
+		 					"gender"		=> $this->input->post("gender"),
 				 			"photo"			=> $file 
 				 		);
 

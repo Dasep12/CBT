@@ -77,7 +77,6 @@ $(function(){
   //tampilkan data ujian lewat ajax 
     $.ajax({
       url : "<?= base_url('admin/Jadwal_ujian/sendData') ?>",
-      type : 'ajax',
       dataType : 'json', 
       contentType : false ,
       async : false ,

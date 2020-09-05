@@ -147,7 +147,6 @@ $("#tambah").submit(function(e){
   //tampilkan data siswa lewat ajax 
     $.ajax({
       url : "<?= base_url('admin/Jurusan/sendData') ?>",
-      type : 'ajax',
       dataType : 'json', 
       contentType : false ,
       async : false ,

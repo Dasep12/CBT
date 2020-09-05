@@ -83,7 +83,6 @@ function del(id){
     //tampilkan data akun siswa ke dalam table lewat dataTable 
     $.ajax({
       url : "<?=  base_url('admin/Akun_pengajar/sendData') ?>",
-      type : 'ajax' ,
       dataType : 'json' ,
       contentType : false ,
       async : false ,

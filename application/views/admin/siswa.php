@@ -35,9 +35,7 @@ $(function(){
   //tampilkan data siswa lewat ajax 
     $.ajax({
       url : "<?= base_url('admin/Siswa/sendData') ?>",
-      type : 'ajax',
       dataType : 'json', 
-      contentType : false ,
       async : false ,
         success : function(siswa){
           var data = [] ;

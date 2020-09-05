@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Sep 2020 pada 13.35
+-- Waktu pembuatan: 05 Sep 2020 pada 06.02
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -42,7 +42,10 @@ CREATE TABLE `akun` (
 INSERT INTO `akun` (`id`, `username`, `nisn`, `password`, `role_id`) VALUES
 (20, 'ADMIN', '807', '123', 1),
 (22, 'Dasep Depiyawan', '1910001', '321', 3),
-(23, 'Lisnawati', '2015', '9090', 2);
+(23, 'Lisnawati', '2015', '9090', 2),
+(32, 'Pandji', '1945', '123', 3),
+(33, 'Febri Hartanto', '1910003', '123', 3),
+(34, 'Andi Gunawan', '1910004', '123', 3);
 
 -- --------------------------------------------------------
 
@@ -343,15 +346,20 @@ CREATE TABLE `siswa` (
   `tempat_lahir` varchar(255) DEFAULT NULL,
   `alamat` varchar(255) DEFAULT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `gender` varchar(200) DEFAULT NULL
+  `gender` varchar(200) DEFAULT NULL,
+  `tahun_ajaran` varchar(200) DEFAULT NULL,
+  `angkatan` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `siswa`
 --
 
-INSERT INTO `siswa` (`id`, `nisn`, `nama`, `kelas`, `kode_prodi`, `prodi`, `tgl_lahir`, `tempat_lahir`, `alamat`, `photo`, `gender`) VALUES
-(26, 1910001, 'Dasep Depiyawan', 'X', 'A1', 'IPA', '1999-04-13', 'Bandung', 'Kp Japat  Jl Lodal Dalam II C', 'siswa.jpg', 'Laki-Laki');
+INSERT INTO `siswa` (`id`, `nisn`, `nama`, `kelas`, `kode_prodi`, `prodi`, `tgl_lahir`, `tempat_lahir`, `alamat`, `photo`, `gender`, `tahun_ajaran`, `angkatan`) VALUES
+(26, 1910001, 'Dasep Depiyawan', 'X', 'A1', 'IPA', '1999-04-13', 'Bandung', 'Kp Japat  Jl Lodal Dalam II C', 'siswa.jpg', 'Laki-Laki', NULL, NULL),
+(46, 1945, 'Pandji', 'XI', 'A1', 'IPA', '1980-11-26', 'Bandung Barat', '1', NULL, 'Laki-Laki', '2020/2021', 'V'),
+(47, 1910003, 'Febri Hartanto', 'X', 'TKJ', 'Teknik Komputer dan Jaringan', '1999-04-13', 'Bandung', 'Jl Lodan II C Kp Japat', NULL, 'Laki-Laki', '2020/2021', '5'),
+(48, 1910004, 'Andi Gunawan', 'X', 'TKJ', 'Teknik Komputer dan Jaringan', '1997-02-14', 'Lampung', 'Jl Lodan II C Kp Japat', NULL, 'Laki-Laki', '2020/2021', '5');
 
 -- --------------------------------------------------------
 
@@ -541,7 +549,7 @@ ALTER TABLE `uts`
 -- AUTO_INCREMENT untuk tabel `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT untuk tabel `bank_soal`
@@ -613,7 +621,7 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas`

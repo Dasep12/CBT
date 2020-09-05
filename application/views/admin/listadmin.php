@@ -68,7 +68,6 @@ $(function(){
   //tampilkan data akun lewat ajax 
     $.ajax({
       url : "<?= base_url('admin/Listadmin/sendData') ?>",
-      type : 'ajax',
       dataType : 'json', 
       contentType : false ,
       async : false ,

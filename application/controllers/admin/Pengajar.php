@@ -26,7 +26,7 @@ class Pengajar extends CI_Controller
  	//kirim json untuk menampilkan data pengajar
  	public function sendData()
  	{
- 		$data =  $this->m_admin->getData("guru")->result();
+ 		$data =  $this->m_admin->cari(array("status" => "pengajar") ,"guru")->result();
  		echo json_encode($data) ;
  	}
 

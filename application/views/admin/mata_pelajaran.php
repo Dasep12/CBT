@@ -76,7 +76,6 @@ $(function(){
   //tampilkan data siswa lewat ajax 
     $.ajax({
       url : "<?= base_url('admin/Mata_pelajaran/sendData') ?>",
-      type : 'ajax',
       dataType : 'json', 
       contentType : false ,
       async : false ,

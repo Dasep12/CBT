@@ -126,7 +126,6 @@
 
     $.ajax({
       url : "<?= base_url('guru/Daftar_tugas/sendData') ?>",
-      type : 'ajax',
       dataType : 'json', 
       contentType : false ,
       async : false ,

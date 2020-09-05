@@ -1,4 +1,4 @@
-
+<a href="<?= base_url('admin/Upload_siswa') ?>" target="_blank" class="mb-2 btn btn-info"><i class="fa fa-file-excel"></i> Upload File CSV</a>
  <!-- Default box -->
       <div class="card">
           <!-- form tambah data siswa -->
@@ -11,12 +11,12 @@
           <tr>
             <th width="120px" >Nama Siswa *</th>
             <td>:</td>
-            <td><input type="text" name="nama" class="form-control col-md-8" placeholder="Masukan Nama" id="nama"></td>          
+            <td><input type="text" name="nama" class="form-control col-md-8" placeholder="Ex : Johny Deep " id="nama"></td>          
           </tr>
           <tr>
             <th>NISN *</th>
             <td>:</td>
-            <td><input type="text" name="nisn" placeholder="Masukan NISN" class="form-control col-md-8" id="nisn"></td>          
+            <td><input type="text" name="nisn" placeholder="Ex : 191001" class="form-control col-md-8" id="nisn"></td>          
           </tr>
           <tr>
             <th>Prodi / Jurusan *</th>
@@ -47,7 +47,7 @@
             <td>:</td>
             <td>
               <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text"  name="tgl_lahir" placeholder="Masukan Tanggal Lahir" id="tgl_lahir" class="col-md-7 form-control datetimepicker-input" data-target="#reservationdate"/>
+                        <input type="text"  name="tgl_lahir" placeholder="Ex : 1999-04-13" id="tgl_lahir" class="col-md-7 form-control datetimepicker-input" data-target="#reservationdate"/>
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -56,15 +56,39 @@
           </tr>
 
           <tr>
+            <th>Jenis Kelamin</th>
+            <td>:</td>
+            <td>
+              <select name="gender" id="gender" class="form-control col-md-8">
+                <option value="">-Pilih Jenis Kelamin-</option>
+                <option>Laki-Laki</option>
+                <option>Perempuan</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
             <th>Tempat Lahir *</th>
             <td>:</td>
-            <td><input type="text" placeholder="Masukan Tempat Lahir" name="tempat_lahir" class="form-control col-md-8" id="tempat_lahir"></td>          
+            <td><input type="text" placeholder="Ex : Bandung" name="tempat_lahir" class="form-control col-md-8" id="tempat_lahir"></td>          
+          </tr>
+
+          <tr>
+            <th>Tahun Ajaran *</th>
+            <td>:</td>
+            <td><input type="text" placeholder="Ex : 2020/2021" name="tahun_ajaran" class="form-control col-md-8" id="tahun_ajaran"></td>         
+          </tr>
+
+          <tr>
+            <th>Angkatan ke -  *</th>
+            <td>:</td>
+            <td><input type="text" placeholder="Ex : V" name="angkatan" class="form-control col-md-8" id="angakatan"></td>          
           </tr>
 
           <tr>
             <th>Alamat *</th>
             <td>:</td>
-            <td><textarea placeholder="Masukan Alamat" class="form-control col-md-8" name="alamat" id="alamat"></textarea></td>          
+            <td><textarea placeholder="Ex : Jakarta Utara Kota Administrasi" class="form-control col-md-8" name="alamat" id="alamat"></textarea></td>          
           </tr>
 
           <tr>
@@ -153,6 +177,14 @@
                 dangerMode : [true,"Ok"]
               }).then(function(){
                 $("#tgl_lahir").focus();
+              })
+            }else if(document.getElementById('gender').value == ""){
+              swal({
+                icon : "error",
+                title : "jenis kelamin masih kosong" ,
+                dangerMode : [true,"Ok"]
+              }).then(function(){
+                $("#gender").focus();
               })
             }else if(document.getElementById('tempat_lahir').value == ""){
               swal({
