@@ -64,5 +64,16 @@ class M_admin extends CI_Model
  				return $return;
  			}
  	}
+
+
+ 	//cek nik dan tgl lahir untuk ganti password
+ 	public function joinAkunNISN($nisn , $tgl)
+ 	{
+ 		$this->db->select("*");
+ 		$this->db->from("siswa");
+ 		$this->db->where(array("siswa.nisn" => $nisn , "tgl_lahir" => $tgl));
+ 		$this->db->join("akun" , "akun.nisn = siswa.nisn");
+ 		return $this->db->get();
+ 	}
 	
 }

@@ -44,25 +44,33 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Perbarui Password </p>
       <form  id="login" method="post">
         <div class="input-group mb-3">
-          <input type="text" name="nisn" class="form-control" id="nisn" placeholder="enter nisn">
+          <input type="hidden" name="token" value="<?= $token ?>">
+          <input type="text" name="nisn" class="form-control" id="nisn" placeholder="masukan nisn ">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
-        <div class="input-group">
-          <input type="password" name="password" class="form-control" id="password" placeholder="enter password">
+        <div class="input-group mb-3">
+          <input type="password" name="password" class="form-control" id="password" placeholder="masukan password baru">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
-          <a class="small" href="<?= base_url('Forgetpass') ?>" class="ml-2">Lupa Password ? </a>
+        <div class="input-group">
+          <input type="password" name="newpassword" class="form-control" id="newpassword" placeholder="ketik ulang  password baru">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
         <div class="row">
           <!-- <div class="col-8">
             <div class="icheck-primary">
@@ -112,14 +120,19 @@
 
 
     $("#login").on("submit",function(e){
+      var password = document.getElementById("password").value ;
       e.preventDefault();
         if(document.getElementById('nisn').value == ""){
-            toastr.error("harap masukan nisn anda untuk login");
+            toastr.error("harap masukan nisn");
         }else if(document.getElementById("password").value == ""){
-             toastr.error("harap masukan password anda untuk login");
+             toastr.error("masukan password baru ");
+        }else if(password.length < 6){
+             toastr.error("password harus 6 digit atau lebih");
+        }else if(document.getElementById("password").value != document.getElementById("newpassword").value){
+             toastr.error("password harus sama");
         }else {
           $.ajax({
-            url : "<?= base_url("Login/ceklogin") ?>",
+            url : "<?= base_url("Forgetpass/updatePass") ?>",
             data : new FormData(this),
             method : "POST" ,
             processData : false,
@@ -132,17 +145,11 @@
               $(".Loading").hide();
             },
             success  : function(psn){
-                if(psn == 0){
-                   toastr.info("Akun tidak terdaftar di sistem");
-                }else if(psn == 1){
-                  toastr.success("Berhasil Login");
-                  window.location.href="<?= base_url("admin/Dashboard") ?>"
-                }else if(psn == 2){
-                  toastr.success("Berhasil Login");
-                  window.location.href="<?= base_url("guru/Dashboard") ?>"
-                }else if(psn == 3){
-                  toastr.success("Berhasil Login");
-                  window.location.href="<?= base_url("siswa/Dashboard") ?>"
+                if(psn == "Berhasil"){
+                  alert("Password di Perbarui");
+                  window.location.href="<?= base_url('Login') ?>"
+                }else {
+                  toastr.error(psn);
                 }
             }
           })

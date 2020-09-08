@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Sep 2020 pada 06.02
+-- Waktu pembuatan: 08 Sep 2020 pada 05.36
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.2.30
 
@@ -43,9 +43,8 @@ INSERT INTO `akun` (`id`, `username`, `nisn`, `password`, `role_id`) VALUES
 (20, 'ADMIN', '807', '123', 1),
 (22, 'Dasep Depiyawan', '1910001', '321', 3),
 (23, 'Lisnawati', '2015', '9090', 2),
-(32, 'Pandji', '1945', '123', 3),
-(33, 'Febri Hartanto', '1910003', '123', 3),
-(34, 'Andi Gunawan', '1910004', '123', 3);
+(36, 'Febri Hartanto', '1910003', 'febriit', 3),
+(37, 'Andi Gunawan', '1910004', '123', 3);
 
 -- --------------------------------------------------------
 
@@ -81,11 +80,11 @@ CREATE TABLE `bank_soal` (
 --
 
 INSERT INTO `bank_soal` (`id`, `id_soal`, `bentuk_ujian`, `kode_soal`, `mata_pelajaran`, `kode_guru`, `nama_guru`, `gelar`, `prodi`, `kode_prodi`, `kelas`, `soal`, `a`, `b`, `c`, `d`, `jawaban`, `tanggal_ujian`, `mulai`, `selesai`) VALUES
-(147, 1, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', '08 31 2020', '16:00:00', '17:00:00'),
-(148, 2, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Ibukota Indonesia', 'Jakarta', 'Bandung', 'Lampung', 'Medan', 'A', '08 31 2020', '16:00:00', '17:00:00'),
-(149, 3, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Indonesia Bagian dari Benua', 'Eropa', 'Antartika', 'Asia', 'Afrika', 'C', '08 31 2020', '16:00:00', '17:00:00'),
-(150, 4, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', '1 Jam sama dengan', '2 menit', '50 detik', '40 detik', '60 menit', 'D', '08 31 2020', '16:00:00', '17:00:00'),
-(151, 5, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Hokage Konoha ke 1', 'Yondaime', 'Hashirama', 'Kakashi', 'Naruto', 'B', '08 31 2020', '16:00:00', '17:00:00'),
+(147, 1, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', '09 05 2020', '17:00:00', '18:00:00'),
+(148, 2, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Ibukota Indonesia', 'Jakarta', 'Bandung', 'Lampung', 'Medan', 'A', '09 05 2020', '17:00:00', '18:00:00'),
+(149, 3, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Indonesia Bagian dari Benua', 'Eropa', 'Antartika', 'Asia', 'Afrika', 'C', '09 05 2020', '17:00:00', '18:00:00'),
+(150, 4, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', '1 Jam sama dengan', '2 menit', '50 detik', '40 detik', '60 menit', 'D', '09 05 2020', '17:00:00', '18:00:00'),
+(151, 5, 'UTS', 'A001', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Hokage Konoha ke 1', 'Yondaime', 'Hashirama', 'Kakashi', 'Naruto', 'B', '09 05 2020', '17:00:00', '18:00:00'),
 (162, 1, 'UAS', 'A002', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', '08 31 2020', '19:00:00', '20:00:00'),
 (163, 2, 'UAS', 'A002', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', '08 31 2020', '19:00:00', '20:00:00'),
 (164, 3, 'UAS', 'A002', 'Sejarah', '2015', 'Lisnawati', 'S,Kom M.Hum', 'IPA', 'A1', 'X', 'Presiden Pertama RI', 'Soekarno', 'Soeharto', 'Yondaime', 'Naruto', 'A', '08 31 2020', '19:00:00', '20:00:00'),
@@ -179,6 +178,13 @@ CREATE TABLE `jadwal_ujian` (
   `kode_guru` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `jadwal_ujian`
+--
+
+INSERT INTO `jadwal_ujian` (`id`, `kode_soal`, `mata_pelajaran`, `kode_mapel`, `hari`, `jam_mulai`, `jam_selesai`, `kelas`, `kode_prodi`, `prodi`, `guru`, `kode_guru`) VALUES
+(8, 'A001', 'Sejarah', 'SJ12', '2020-09-05', '17:00:00', '18:00:00', 'X', 'A1', 'IPA', 'Lisnawati S,Kom M.Hum', '2015');
+
 -- --------------------------------------------------------
 
 --
@@ -198,27 +204,6 @@ CREATE TABLE `jawaban` (
   `mata_pelajaran` varchar(100) DEFAULT NULL,
   `kode_soal` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `jawaban`
---
-
-INSERT INTO `jawaban` (`id`, `id_soal`, `bentuk_ujian`, `nama`, `nisn`, `jawaban`, `prodi`, `kelas`, `tanggal`, `mata_pelajaran`, `kode_soal`) VALUES
-(131, 1, 'UTS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A001'),
-(132, 2, 'UTS', 'Dasep Depiyawan', '1910001', 'B', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A001'),
-(133, 3, 'UTS', 'Dasep Depiyawan', '1910001', 'D', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A001'),
-(134, 4, 'UTS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A001'),
-(135, 5, 'UTS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A001'),
-(136, 1, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(137, 2, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(138, 3, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(139, 4, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(140, 5, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(141, 6, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(142, 7, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(143, 8, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(144, 9, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002'),
-(145, 10, 'UAS', 'Dasep Depiyawan', '1910001', 'A', 'IPA', 'X', '2020-08-31', 'Sejarah', 'A002');
 
 -- --------------------------------------------------------
 
@@ -357,9 +342,27 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`id`, `nisn`, `nama`, `kelas`, `kode_prodi`, `prodi`, `tgl_lahir`, `tempat_lahir`, `alamat`, `photo`, `gender`, `tahun_ajaran`, `angkatan`) VALUES
 (26, 1910001, 'Dasep Depiyawan', 'X', 'A1', 'IPA', '1999-04-13', 'Bandung', 'Kp Japat  Jl Lodal Dalam II C', 'siswa.jpg', 'Laki-Laki', NULL, NULL),
-(46, 1945, 'Pandji', 'XI', 'A1', 'IPA', '1980-11-26', 'Bandung Barat', '1', NULL, 'Laki-Laki', '2020/2021', 'V'),
-(47, 1910003, 'Febri Hartanto', 'X', 'TKJ', 'Teknik Komputer dan Jaringan', '1999-04-13', 'Bandung', 'Jl Lodan II C Kp Japat', NULL, 'Laki-Laki', '2020/2021', '5'),
-(48, 1910004, 'Andi Gunawan', 'X', 'TKJ', 'Teknik Komputer dan Jaringan', '1997-02-14', 'Lampung', 'Jl Lodan II C Kp Japat', NULL, 'Laki-Laki', '2020/2021', '5');
+(49, 1910003, 'Febri Hartanto', 'X', 'TKJ', 'Teknik Komputer dan Jaringan', '1999-04-13', 'Bandung', 'Jl Lodan II C Kp Japat', NULL, 'Laki-Laki', '2020/2021', '5'),
+(50, 1910004, 'Andi Gunawan', 'X', 'TKJ', 'Teknik Komputer dan Jaringan', '1997-02-14', 'Lampung', 'Jl Lodan II C Kp Japat', NULL, 'Laki-Laki', '2020/2021', '5');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `token`
+--
+
+CREATE TABLE `token` (
+  `id` int(11) NOT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `nisn` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `token`
+--
+
+INSERT INTO `token` (`id`, `token`, `nisn`) VALUES
+(7, 'NBhLFA6', NULL);
 
 -- --------------------------------------------------------
 
@@ -524,6 +527,12 @@ ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `token`
+--
+ALTER TABLE `token`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `tugas`
 --
 ALTER TABLE `tugas`
@@ -549,7 +558,7 @@ ALTER TABLE `uts`
 -- AUTO_INCREMENT untuk tabel `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `bank_soal`
@@ -573,13 +582,13 @@ ALTER TABLE `file_materi`
 -- AUTO_INCREMENT untuk tabel `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `jadwal_ujian`
 --
 ALTER TABLE `jadwal_ujian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `jawaban`
@@ -621,7 +630,13 @@ ALTER TABLE `materi`
 -- AUTO_INCREMENT untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT untuk tabel `token`
+--
+ALTER TABLE `token`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `tugas`
