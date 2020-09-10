@@ -35,7 +35,7 @@
  	public function mapelModal()
  	{
  		$id = $this->input->get("id");
- 		$data['pengajar'] = $this->m_admin->getData("guru")->result(); 
+ 		$data['pengajar'] = $this->m_admin->cari(array('status' => "Pengajar"),"guru")->result(); 
  		$data['jurusan'] = $this->m_admin->getData("jurusan")->result(); 
  		$data['mapel'] = $this->m_admin->cari(array("id" => $id),"mata_pelajaran")->row();
  		$this->load->view("admin/modal_mata_pelajaran",$data);
