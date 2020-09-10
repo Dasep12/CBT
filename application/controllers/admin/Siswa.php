@@ -37,6 +37,7 @@ header("Access-Control-Allow-Methods: GET, OPTIONS");
  		$data['hari'] = $this->hari();
  		$data['url']  = $this->uri->segment(2); 
  		$data['profile'] = $this->m_admin->cari(array("nisn" => $id),"siswa")->row();
+ 		$data['prodi'] = $this->m_admin->getData("jurusan")->result();
  		$this->template->load("template/template_admin","admin/view_siswa",$data);
  	}
 
@@ -89,15 +90,19 @@ header("Access-Control-Allow-Methods: GET, OPTIONS");
  	//update data siswa
  	public function updateData()
  	{
+ 		$prodi =  $this->m_admin->cari(array("kode_jurusan" => $this->input->post("prodi")),"jurusan")->row();
  		$data = array(
 		 			"nama"			=> $this->input->post("nama"),
 		 			"nisn"			=> $this->input->post("nisn"),
-		 			"prodi"			=> $this->input->post("prodi"),
+		 			"prodi"			=>  $prodi->jurusan,
+		 			"kode_prodi"	=>  $prodi->kode_jurusan,
 		 			"kelas"			=> $this->input->post("kelas"),
 		 			"tgl_lahir"		=> $this->input->post("tgl_lahir"),
 		 			"tempat_lahir"	=> $this->input->post("tempat_lahir"),
 		 			"alamat"		=> $this->input->post("alamat"),
+		 			"status"		=> $this->input->post("status"),
 		 		);
+ 		
  		$id = $this->input->post("id");
  		$update = $this->m_admin->update($data,"siswa",array("id" => $id));
  					if($update){

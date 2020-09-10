@@ -29,6 +29,13 @@
  		echo json_encode($data);
  	}
 
+ 	//kirim data siswa di select
+ 	public function sendSelect()
+ 	{
+ 		$key = $this->input->get("nipn");
+ 		$data = $this->m_admin->getSelect2($key);
+ 		echo json_encode($data);
+ 	}
 
  	//hapus data akun siswa
  	public function delete()
@@ -77,6 +84,33 @@
 	 			}else {
 	 				echo "Gagal" ;
 	 			}
+ 		}
+ 	}
+
+ 	//tambah data akun siswa baru 
+ 	public function addAkun()
+ 	{
+ 		$nisn = $this->input->post("nisn");
+ 		//cek nisn sudah terdaftar di akun apa tidak
+ 		$cekNISN = $this->m_admin->cari(array("nisn" => $nisn) , "akun");
+ 		$cekNAMA = $this->m_admin->cari(array("nisn" => $nisn) , "siswa");
+ 		if($cekNISN->num_rows() > 0 ){
+ 			echo "NISN sudah terdaftar di akun";
+ 		}else {
+ 		$akun = $cekNAMA->row();
+ 			$data = array(
+ 				"nisn"			=> $nisn ,
+ 				"username"		=> $akun->nama,
+ 				"password"		=> $this->input->post("password"),
+ 				"role_id"		=> 3 
+ 			);
+
+ 			$input  = $this->m_admin->input($data,"akun");
+ 				if($input){
+ 					echo "Sukses";
+ 				}else {
+ 					echo "Gagal Input";
+ 				}
  		}
  	}
 

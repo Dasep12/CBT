@@ -75,5 +75,30 @@ class M_admin extends CI_Model
  		$this->db->join("akun" , "akun.nisn = siswa.nisn");
  		return $this->db->get();
  	}
+
+ 	//
+ 	public function insertimport($data)
+    {
+        $this->db->insert_batch("token", $data);
+    }
+
+    public function getSelect($key)
+    {
+    	$this->db->select("*");
+    	$this->db->limit(10);
+    	$this->db->from("siswa");
+    	$this->db->like("nisn" , $key);
+    	return $this->db->get()->result_array();
+    }
+
+    public function getSelect2($key)
+    {
+    	$this->db->select("*");
+    	$this->db->limit(10);
+    	$this->db->from("guru");
+    	$this->db->where("status" , "Pengajar");
+    	$this->db->like("nipn" , $key);
+    	return $this->db->get()->result_array();
+    }
 	
 }

@@ -40,8 +40,7 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Daftar Soal</a></li>
-                 
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Edit Soal UAS</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -49,34 +48,37 @@
                   <div class="active tab-pane" id="activity">
                     <!-- Post -->
                     <div class="post">
-                      <a href="<?= base_url('guru/Upload_soal') ?>" class="btn btn-danger btn-sm mb-2"><i class="fa fa-upload"></i> Upload Soal UAS</a>
-                      <table class="table" id="uas">
+                   <table class="table" id="uts">
                         <thead>
                           <tr>
                             <th>No</th>
-                            <th>Kode Soal</th>
-                            <th>Mata Pelajaran</th>
-                            <th>Kelas</th>
+                            <th>Soal</th>
+                            <th>Pilihan A</th>
+                            <th>Pilihan B</th>
+                            <th>Pilihan C</th>
+                            <th>Pilihan D</th>
+                            <th>Jawaban</th>
                             <th>Aksi</th>
                           </tr>
                         </thead>
                         <tbody>
-                           <?php $no = 0 ; foreach($uas as $soal) : ?>
+                          <?php $no = 0 ; foreach($edit_soal as $soal) : ?>
                             <tr>
-                              <td><?= ++$no ; ?></td>
-                              <td><?= $soal->kode_soal ; ?></td>
-                              <td><?= $soal->mata_pelajaran ; ?></td>
-                              <td><?= $soal->kelas ; ?></td>
+                              <td><?= $soal->id_soal ; ?></td>
+                              <td><?= $soal->soal ; ?></td>
+                              <td><?= $soal->a ; ?></td>
+                              <td><?= $soal->b ; ?></td>
+                              <td><?= $soal->c ; ?></td>
+                              <td><?= $soal->d ; ?></td>
+                              <td><?= $soal->jawaban ; ?></td>
                               <td>
-                                <a href="<?= base_url('guru/Soal_uas/view_uas/'.$soal->kode_soal) ?>" class="btn btn-success btn-xs">lihat</a>
-                                <a href="<?= base_url('guru/Soal_uas/edit_soal/'.$soal->kode_soal) ?>" class="btn btn-info btn-xs">edit</a>
-                                <a href="javascript:del('<?= $soal->kode_soal ?>')" class="btn btn-danger btn-xs">Delete</a>
+                                <a href="<?= base_url('guru/Soal_uas/form_edit/'.$soal->id) ?>" class="btn btn-danger btn-xs">Edit Soal</a>
                               </td>
                             </tr>
                           <?php endforeach ?>
-                          
                         </tbody>
                       </table>
+
                     </div>
                     <!-- /.post -->
                   </div>
@@ -93,39 +95,19 @@
       </div><!-- /.container-fluid -->
 
 
-  <script type="text/javascript">
+<script type="text/javascript">
   $(document).ready(function(){
 
-     $('#uas').DataTable();
+    $('#uts').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    $(".form-group").smpPagination(2) ; 
 
   })
-
-    //hapus data soal uas
-function del(kode){
-    swal({
-      title: "Hapus data ?",
-      text: "data yang di hapus tidak bisa di kembalikan",
-      icon: "warning",
-      buttons: [true,"Tetap Hapus"],
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-          $.ajax({
-            url : "<?= base_url('guru/Soal_uas/delete') ?>",
-            method : "GET",
-            data : "kode="+kode ,
-            success : function(response){
-                if(response == "Sukses"){
-                  toastr.success("Data Berhasil Terhapus");
-                  window.location.href="<?= base_url('guru/Soal_uas') ?>"
-                }             
-            }
-
-          })
-      }
-    });
-  }
-
 </script>
-

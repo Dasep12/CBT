@@ -41,7 +41,6 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Edit Soal UTS</a></li>
-                   <li class="nav-item ml-2"><a class="nav-link " href="#" ><i class="fa fa-arrow-left"></i> Kembali</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">

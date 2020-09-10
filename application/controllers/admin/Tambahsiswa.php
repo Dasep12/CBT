@@ -49,6 +49,8 @@
 		 			"tahun_ajaran"	=> $this->input->post("tahun_ajaran"),
 		 			"angkatan"		=> $this->input->post("angkatan"),
 		 			"gender"		=> $this->input->post("gender"),
+		 			"status"		=> $this->input->post("status"),
+
 		 		);
 
 		 		//simpan data untuk akun siswa
@@ -97,6 +99,7 @@
 				 			"tahun_ajaran"	=> $this->input->post("tahun_ajaran"),
 		 					"angkatan"		=> $this->input->post("angkatan"),
 		 					"gender"		=> $this->input->post("gender"),
+		 					"status"		=> $this->input->post("status"),
 				 			"photo"			=> $file 
 				 		);
 

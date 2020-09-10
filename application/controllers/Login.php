@@ -7,9 +7,10 @@
  class Login extends CI_Controller
  {
 
- 	public  function __construct()
+
+
+ 	public function index()
  	{
- 		parent::__construct();
  		if(!empty($this->session->userdata("role_id")) && $this->session->userdata("role_id") == 1 ) {
  			$this->session->set_flashdata("error","Gagal");
  			redirect("admin/Dashboard");
@@ -20,10 +21,8 @@
  			$this->session->set_flashdata("error","Gagal");
  			redirect("siswa/Dashboard");
  		}
- 	}
 
- 	public function index()
- 	{
+ 		
  		$this->load->view("login");
  	}
 

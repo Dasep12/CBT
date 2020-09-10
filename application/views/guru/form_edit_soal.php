@@ -40,7 +40,7 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Edit Soal UTS</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab"><i class="fa fa-book"></i> Edit Soal UAS</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -51,7 +51,7 @@
                    		<form action="" id="updateSoal" method="post" >
                    			<div class="form-group">
                    				<label>Soal No. <?= $soal->id_soal ?></label>
-                          <input type="text" name="kode_soal" value="<?= $soal->kode_soal ?>">
+                          <input type="hidden" name="kode_soal" value="<?= $soal->kode_soal ?>">
                    				<input type="hidden" name="id" value="<?= $soal->id ?>">
                    				<textarea id="soal" name="soal" class="form-control"><?= $soal->soal ?></textarea>
                    			</div>
@@ -119,7 +119,7 @@
   				toastr.error("perhatian jawaban dari soal tidak boleh kosong");
   			}else {
   				$.ajax({
-  					url : "<?= base_url('guru/Soal_uts/update') ?>",
+  					url : "<?= base_url('guru/Soal_uas/update') ?>",
   					method : "POST" ,
   					cache : false ,
   					processData : false ,
@@ -134,7 +134,7 @@
   					success : function(msg){
   						if(msg == "Sukses"){
   							toastr.success("Soal Berhasil di Perbaharui");
-  							window.location.href="<?= base_url("guru/Soal_uts/edit_soal/".$kode) ?>"
+  							window.location.href="<?= base_url("guru/Soal_uas/edit_soal/".$kode) ?>"
   						}else {
   							toastr.error("perhatian jawaban dari soal tidak boleh kosong");
   						}

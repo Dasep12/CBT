@@ -12,42 +12,42 @@
           <center>
               <form action="" method="post" id="updatePoto" enctype="multipart/form-data">
               <?php if(empty($profile->photo)){ ?>
-                <img src="#" height="50px" width="60px">
+                <img class="img img-thumbnail" src="<?php echo base_url('assets/poto_siswa/siswa.jpg') ?>" height="250px" width="250px">
               <?php }else { ?>
-                <img height="150px" width="250px" class="mt-4 img img-thumbnail" src="<?= base_url("assets/poto_siswa/". $profile->photo) ?>">
+                <img height="150px" width="250px" class="mt-4 img img-thumbnail" src="<?php echo base_url("assets/poto_siswa/". $profile->photo) ?>">
               <?php } ?>
                <input type="file" class="mt-2 ml-5" name="photo" id="photo" onchange="return file()">
-               <input type="hidden" name="id" value="<?= $profile->id ?>">
-               <input type="hidden" name="namePoto" value="<?= $profile->photo ?>">
+               <input type="hidden" name="id" value="<?php echo $profile->id ?>">
+               <input type="hidden" name="namePoto" value="<?php echo $profile->photo ?>">
                <button type="submit" class="btn btn-primary btn-sm mt-2">Update Poto</button>
             </form>
           </center>
             </div>
             <div class="col-lg-8">
               <form action="" method="post" id="updateData" name="updateData">
-                <input type="hidden" name="id" value="<?= $profile->id ?>">
+                <input type="hidden" name="id" value="<?php echo $profile->id ?>">
                 <table class="table">
                     <tr>
                       <td>Nama</td>
                       <td>:</td>
-                      <td><input class="form-control"  type="text" name="nama" id="nama" value="<?= $profile->nama ?>"></td>
+                      <td><input class="form-control"  type="text" name="nama" id="nama" value="<?php echo $profile->nama ?>"></td>
                     </tr>
                     <tr>
                       <td>NISN</td>
                       <td>:</td>
-                      <td><input class="form-control"  type="text" name="nisn" id="nisn" value="<?= $profile->nisn ?>"></td>
+                      <td><input class="form-control"  type="text" name="nisn" id="nisn" value="<?php echo $profile->nisn ?>"></td>
                     </tr> 
                      <tr>
                       <td>Tempat Lahir</td>
                       <td>:</td>
-                      <td><input class="form-control"  type="text" name="tempat_lahir" id="tempat_lahir" value="<?= $profile->tempat_lahir ?>"></td>
+                      <td><input class="form-control"  type="text" name="tempat_lahir" id="tempat_lahir" value="<?php echo $profile->tempat_lahir ?>"></td>
                     </tr>
                     <tr>
                       <td>Tanggal Lahir</td>
                       <td>:</td>
                       <td>
                           <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text"  name="tgl_lahir" value="<?= $profile->tgl_lahir ?>" placeholder="Masukan Tanggal Lahir" id="tgl_lahir" class="col-md-7 form-control datetimepicker-input" data-target="#reservationdate"/>
+                            <input type="text"  name="tgl_lahir" value="<?php echo $profile->tgl_lahir ?>" placeholder="Masukan Tanggal Lahir" id="tgl_lahir" class="col-md-7 form-control datetimepicker-input" data-target="#reservationdate"/>
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -58,15 +58,29 @@
                       <td>Alamat</td>
                       <td>:</td>
                       <td>
-                        <textarea class="form-control" rows="2" name="alamat" id="alamat"><?= $profile->alamat  ?></textarea>
+                        <textarea class="form-control" rows="2" name="alamat" id="alamat"><?php echo $profile->alamat  ?></textarea>
                       </td>
                     </tr> 
+                    <tr>
+                      <td>Status</td>
+                      <td>:</td>
+                      <td>
+                         <select  class="form-control" id="status" name="status">
+                          <option><?php echo $profile->status ?></option>
+                          <?php if($profile->status == "Aktif" ) {  ?>
+                            <option>Non-Aktif</option>
+                          <?php }else { ?>
+                            <option>Aktif</option>
+                          <?php } ?>
+                        </select>
+                      </td>
+                    </tr>
                     <tr>
                       <td>Kelas</td>
                       <td>:</td>
                       <td>
                         <select  class="form-control" id="kelas" name="kelas">
-                          <option><?= $profile->kelas ?></option>
+                          <option><?php echo $profile->kelas ?></option>
                           <option>X</option>
                           <option>XI</option>
                           <option>XII</option>
@@ -78,10 +92,10 @@
                       <td>:</td>
                       <td>
                         <select id="prodi"  class="form-control" name="prodi">
-                          <option><?= $profile->prodi ?></option>
-                          <option>TKJ</option>
-                          <option>AKP</option>
-                          <option>TKR</option>
+                          <option value="<?php echo $profile->kode_prodi ?>" ><?php echo $profile->prodi ?></option>
+                          <?php foreach($prodi as $jurusan) : ?>
+                            <option value="<?php echo $jurusan->kode_jurusan ?>"><?php echo $jurusan->jurusan ?></option>
+                          <?php endforeach ?>
                         </select>
                       </td>
                     </tr>
@@ -117,7 +131,7 @@
           })
         }else {
           $.ajax({
-            url : "<?= base_url('admin/Siswa/updatePoto') ?>" ,
+            url : "<?php echo base_url('admin/Siswa/updatePoto') ?>" ,
             data : new FormData(this),
             method : "POST" ,
             cache : false ,
@@ -134,7 +148,7 @@
                 icon : "success",
                 title : e ,
               }).then(function(){
-                window.location.href="<?= base_url('admin/Siswa/view/'. $profile->nisn) ?>"
+                window.location.href="<?php echo base_url('admin/Siswa/view/'. $profile->nisn) ?>"
               })
             }
           })
@@ -203,7 +217,7 @@
               })
             }else {
                   $.ajax({
-                  url : "<?= base_url('admin/Siswa/updateData') ?>" ,
+                  url : "<?php echo base_url('admin/Siswa/updateData') ?>" ,
                   data : new FormData(this),
                   method : "POST" ,
                   cache : false ,
@@ -220,7 +234,7 @@
                       icon : "success",
                       title : e ,
                     }).then(function(){
-                      window.location.href="<?= base_url('admin/Siswa/view/'. $profile->nisn) ?>"
+                      window.location.href="<?php echo base_url('admin/Siswa/view/'. $profile->nisn) ?>"
                     })
                   }
                 })

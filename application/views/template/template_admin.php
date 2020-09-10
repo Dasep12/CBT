@@ -412,6 +412,7 @@ $title = $this->db->get("judul")->row()?>
 <script src="<?= base_url('assets') ?>/plugins/sparklines/sparkline.js"></script>
 <!-- daterangepicker -->
 <script src="<?= base_url('assets') ?>/plugins/moment/moment.min.js"></script>
+
 <script type="text/javascript">
 $(function(){
         //Date range picker
@@ -422,6 +423,8 @@ $(function(){
       $('#tanggal').datetimepicker({
           format: 'MM DD YYYY',
       });
+
+
 })
   
 

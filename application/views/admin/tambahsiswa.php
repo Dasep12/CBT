@@ -86,6 +86,18 @@
           </tr>
 
           <tr>
+            <th>Status  *</th>
+            <td>:</td>
+            <td>
+              <select name="status" id="status" class="form-control col-md-8">
+                <option value="">-Pilih Status Siswa-</option>
+                <option>Aktif</option>
+                <option>Non-Aktif</option>
+              </select>
+            </td>          
+          </tr>
+
+          <tr>
             <th>Alamat *</th>
             <td>:</td>
             <td><textarea placeholder="Ex : Jakarta Utara Kota Administrasi" class="form-control col-md-8" name="alamat" id="alamat"></textarea></td>          

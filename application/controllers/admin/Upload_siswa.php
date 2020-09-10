@@ -82,6 +82,7 @@
 			                	'gender'			=> $row['F'],
 			                	'tahun_ajaran'		=> $row['K'],
 			                	'angkatan'  		=> $row['L'],
+			                	'status' 	 		=> $row['M'],
 			                ));
 
 			                //push data akun siswa

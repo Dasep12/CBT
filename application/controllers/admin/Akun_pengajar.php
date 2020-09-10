@@ -30,6 +30,14 @@
  		echo json_encode($data);
  	}
 
+ 	//kirim data pengajar di select
+ 	public function sendSelect()
+ 	{
+ 		$key = $this->input->get("nipn");
+ 		$data = $this->m_admin->getSelect2($key);
+ 		echo json_encode($data);
+ 	}
+
 
  	//hapus data akun pengajar
  	public function delete()
@@ -78,6 +86,33 @@
 	 			}else {
 	 				echo "Gagal" ;
 	 			}
+ 		}
+ 	}
+
+ 	//tambah data akun pengajar baru 
+ 	public function addAkun()
+ 	{
+ 		$nipn = $this->input->post("nipn");
+ 		//cek nipn sudah terdaftar di akun apa tidak
+ 		$ceknipn = $this->m_admin->cari(array("nisn" => $nipn) , "akun");
+ 		$cekNAMA = $this->m_admin->cari(array("nipn" => $nipn) , "guru");
+ 		if($ceknipn->num_rows() > 0 ){
+ 			echo "NIPN sudah terdaftar di akun";
+ 		}else {
+ 		$akun = $cekNAMA->row();
+ 			$data = array(
+ 				"nisn"			=> $nipn ,
+ 				"username"		=> $akun->nama,
+ 				"password"		=> $this->input->post("password"),
+ 				"role_id"		=> 2	
+ 			);
+
+ 			$input  = $this->m_admin->input($data,"akun");
+ 				if($input){
+ 					echo "Sukses";
+ 				}else {
+ 					echo "Gagal Input";
+ 				}
  		}
  	}
 
