@@ -44,9 +44,7 @@
 					echo "<img height='30px' width='30px' src=". base_url('assets/dist/img/word.png') .">" . $tugas->file_jawaban;				
 				}elseif($info == "pdf"){
 					echo "<img height='30px' width='30px' src=". base_url('assets/dist/img/word.png') .">" . $tugas->file_jawaban ;				
-				}elseif($info == "jpg"){
-					echo "<img height='30px' width='30px' src=". base_url('assets/dist/img/picture.png') .">" . $tugas->file_jawaban ;				
-				}elseif($info == "png"){
+				}elseif($info == "jpg" || $info == "PNG" || $info == "JPG" || $info == "JPEG" || $info == "jpg"|| $info == "jpeg"  ){
 					echo "<img height='30px' width='30px' src=". base_url('assets/dist/img/picture.png') .">" . $tugas->file_jawaban ;				
 				}
 			?>

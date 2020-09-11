@@ -4,12 +4,13 @@
 
 
 <div class="form-group">
+<?php if(!empty($jawaban->file_jawaban)) : ?>
 <label>Lampiran Tugas</label><br>
 <a href="javascript:file('<?= $jawaban->file_jawaban ?>')" class="btn btn-danger btn-sm">
 	 <?php 
 	 $path = base_url('assets/tugas/jawaban/'.$jawaban->file_jawaban);
 	  $info = pathinfo($path, PATHINFO_EXTENSION);
-	  	if($info == "jpg" || $info == "png" || $info == "jpeg" ){
+	  	if($info == "jpg" || $info == "png" || $info == "jpeg" || $info == "PNG" || $info == "JPG" || $info == "JPEG"  ){
 	  		echo "<img height='30px' width='30px' src='" . base_url('assets/dist/img/picture.png') . "'>";
 	  	}else if($info == "docx"){
 	  		echo "<img height='30px' width='30px' src='" . base_url('assets/dist/img/word.png') . "'>";
@@ -18,6 +19,7 @@
 	  	}
     ?>
 </a>
+<?php endif ?>
 </div>
 
 <div class="form-group">

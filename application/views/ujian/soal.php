@@ -33,22 +33,7 @@
 				<td>:</td>
 				<td><?= $jumlah ?></td>
 			</tr>
-			<tr>
-				<td>Waktu Ujian</td>
-				<td>:</td>
-				<td><span id="waktuUJian"></span>
-						<script type="text/javascript">
-							const m = "<?= $timer->mulai ?> ";
-							const s  =  "<?= $timer->selesai ?> " ;
-							const mulai = m.split(":")[0] +  m.split(":")[1]  +  m.split(":")[2] ;
-							const selesai = s.split(":")[0] +  s.split(":")[1]  + s.split(":")[2];
-							const selisih = parseInt(selesai) - parseInt(mulai) ;
-							const jam = selisih *(1000 * 60 * 60) /  60 * 60  ;
-							document.getElementById("waktuUJian").innerHTML = jam ;
-						</script>
-
-				</td>
-			</tr>
+			
 			<tr>
 				<td>Timer</td>
 				<td>:</td>

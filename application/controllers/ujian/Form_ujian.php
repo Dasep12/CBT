@@ -1,6 +1,6 @@
 <?php
 
-
+date_default_timezone_set('Asia/Jakarta');
  /**
   * 
   */
@@ -20,7 +20,6 @@
  		$where = array("hari" => date('Y-m-d'));
  		$data['jadwal'] = $this->m_soal->cek("jadwal_ujian",$where)->result();
 
- 		
  		$where2 = array(
  			'nisn' => $this->session->userdata("nisn")
  		);
