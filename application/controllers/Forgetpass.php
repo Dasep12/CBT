@@ -48,11 +48,10 @@ class Forgetpass extends CI_Controller
 	      $max = strlen($codeAlphabet); // edited
 	        
 	      for ($i=0; $i < 7 ; $i++) {
-	       $token .= $codeAlphabet[random_int(0, $max-1)];
+	       $token .= $codeAlphabet[rand(0, $max-1)];
 	      }
 	      
 
-		$this->load->library('email');  
 			$config = Array(  
             'protocol'   => 'smtp',  
             'smtp_host'  => 'ssl://smtp.googlemail.com',  
@@ -63,7 +62,8 @@ class Forgetpass extends CI_Controller
             'charset'    => 'iso-8859-1'  
            );  
            
- 			$isi = 'Berikut kode ganti password akun anda, kode tersebut hanya bisa digunakan satu kali<br><center><h3>'.  $token .'</h3></center>' ;
+ 			$isi = 'Berikut kode ganti password akun anda, kode tersebut hanya bisa digunakan satu kali <br><center><h3>'.  $token .' </h3></center>' ;
+	  	   $this->load->library('email', $config);  
            $this->email->initialize($config);
            $this->email->set_newline("\r\n");  
 
